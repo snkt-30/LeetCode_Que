@@ -19,6 +19,7 @@ using namespace std;
         count[i]=count[i-1]+count[i];
     }
     
+    
     vector<int>ans;
     for(int i=0;i<m;i++)
     {
