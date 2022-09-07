@@ -1,12 +1,12 @@
 /**
  *Definition for a binary tree node.
  *struct TreeNode {
- *   int val;
- *   TreeNode * left;
- *   TreeNode * right;
- *   TreeNode() : val(0), left(nullptr), right(nullptr) {}
- *   TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
- *   TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ *  int val;
+ *  TreeNode * left;
+ *  TreeNode * right;
+ *  TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *  TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *  TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
  *};
  */
 class Solution
@@ -15,25 +15,23 @@ class Solution
         string str = "";
     void helper(TreeNode *node)
     {
-       if(node==nullptr)
-           return;
-        
-        str+=to_string(node->val);
-        if(node->left or node->right)
+        if (node == nullptr)
+            return;
+
+        str += to_string(node->val);
+        if (node->left or node->right)
         {
-            str+='(';
+            str += '(';
             helper(node->left);
-            str+=')';
+            str += ')';
         }
-        
-        if(node->right)
+
+        if (node->right)
         {
-            str+='(';
+            str += '(';
             helper(node->right);
-            str+=')';
+            str += ')';
         }
-        
-    
     }
     string tree2str(TreeNode *root)
     {
