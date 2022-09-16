@@ -2,39 +2,29 @@ class Solution
 {
     public:
 
-       void gen_permute(vector<int>&ds,vector<int>&ar,vector<vector<int>>&ans,int freq[])
-       {
-           if(ds.size()==ar.size())
-           {
-               ans.push_back(ds);
-               return;
-           }
-           
-           for(int i=0;i<ar.size();i++)
-           {
-               if(!freq[i])
-               {
-                          ds.push_back(ar[i]);
-                     freq[i]=1;
-                   gen_permute(ds,ar,ans,freq);
-                   ds.pop_back();
-                   freq[i]=0;
-               }
-           }
-       }
+        void gen_permute(int ind,vector<int> &ds, vector<int> &ar, vector< vector< int>> &ans)
+        {
+            if(ind==ar.size())
+            {
+                ans.push_back(ar);
+                return;
+            }
+            for(int i=ind;i<ar.size();i++)
+            {
+                swap(ar[i],ar[ind]);
+                gen_permute(ind+1,ds,ar,ans);
+                swap(ar[i],ar[ind]);
+            }
+        }
     vector<vector < int>> permute(vector<int> &nums)
     {
 
         vector<vector < int>> ans;
         vector<int> ds;
-        int freq[nums.size()];
+        // int freq[nums.size()];
 
-        for (int i = 0; i < nums.size(); i++)
-        {
-            freq[i] = 0;
-        }
 
-        gen_permute(ds, nums, ans, freq);
+        gen_permute(0,ds, nums, ans);
 
         return ans;
     }
