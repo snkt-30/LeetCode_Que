@@ -21,15 +21,16 @@ class Solution
             combo(ind, ans, ds, ar, target - ar[ind]);	//if i was taking that element then why should i have to move the index coz i  have the unlimited acces of same element
             ds.pop_back();
 
-           	
-
         }
+    
     vector<vector < int>> combinationSum(vector<int> &candidates, int target)
     {
         vector<vector < int>> ans;
+        
         vector<int> ds;
-
+        
         combo(0, ans, ds, candidates, target);
+        
         return ans;
     }
 };
