@@ -37,7 +37,7 @@ public:
                temp.push_back(t);
             }
             
-            sort(temp.begin(),temp.end());
+            // sort(temp.begin(),temp.end());
             if(temp.size()==0)
             {
                 ans.push_back({"0"});
