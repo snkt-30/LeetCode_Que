@@ -5,49 +5,99 @@ using namespace std;
 // } Driver Code Ends
 class Solution {
   public:
-    vector<int> satisfyEqn(int A[], int N) {
+    vector<int> satisfyEqn(int a[], int N) {
         // code here
         
-        vector<int>ans;
+        vector<int>Ans;
         
+        // for(int i=0;i<N;i++)
+        // {
+        //     if(ans.size()!=0)
+        //       break;
+        //     for(int j=0;j<N;j++)
+        //     {
+        //         if(ans.size()!=0) break;
+        //         for(int k=0;k<N;k++)
+        //         {
+        //             if(ans.size()!=0)break;
+        //             for(int l=0;l<N;l++)
+        //             {
+        //                 if(i!=j and i!=k and i!=l and j!=k and j!=l and k!=l)
+        //                   if(ans.size()==0)
+        //                   {
+        //                       if(A[i]+A[j]==A[k]+A[l])
+        //                       {
+        //                           ans.push_back(i);
+        //                           ans.push_back(j);
+        //                           ans.push_back(k);
+        //                           ans.push_back(l);
+        //                       }
+        //                   }
+        //              }
+        //          }
+        //       }
+        //   }
+        
+           map<int,pair<int,int>>mp;
+        
+        
+        // bool shouldreplace=false;
         for(int i=0;i<N;i++)
         {
-            if(ans.size()!=0)
-              break;
-            for(int j=0;j<N;j++)
+            for(int j=i+1;j<N;j++)
             {
-                if(ans.size()!=0) break;
-                for(int k=0;k<N;k++)
+                int sum=a[i]+a[j];
+                // pair<int,int> temp(i,j);
+                if(mp.find(sum)==mp.end())
                 {
-                    if(ans.size()!=0)break;
-                    for(int l=0;l<N;l++)
+                    mp[sum]=make_pair(i,j);
+                    continue;
+                }
+                
+                pair<int,int>temp=mp[sum];
+                
+                if(temp.first != i and temp.first != j and temp.second != i and temp.second != j)
+                {
+                    vector<int> ans(4);
+                    
+                    ans[0]=temp.first;
+                    ans[1]=temp.second;
+                    ans[2]=i;
+                    ans[3]=j;
+                    
+                    if(Ans.size()==0)
                     {
-                        if(i!=j and i!=k and i!=l and j!=k and j!=l and k!=l)
-                           if(ans.size()==0)
-                           {
-                               if(A[i]+A[j]==A[k]+A[l])
-                               {
-                                   ans.push_back(i);
-                                   ans.push_back(j);
-                                   ans.push_back(k);
-                                   ans.push_back(l);
-                               }
-                           }
-                       }
+                        Ans=ans;
+                    }
+                    else
+                    {
+                        bool shouldreplace=false;
+                        for(int i1=0;i1<Ans.size();i1++)
+                        {
+                            if(Ans[i1]<ans[i1])
+                              break;
+                             if(Ans[i1]>ans[i1])
+                             {
+                                 shouldreplace=true;
+                                 break;
+                             }
+                        }
+                        
+                        if(shouldreplace)
+                          Ans=ans;
                     }
                 }
-            
+            }
         }
         
-        if(ans.size()==0)
+        if(Ans.size()==0)
         {
-            ans.push_back(-1);
-            ans.push_back(-1);
-            ans.push_back(-1);
-            ans.push_back(-1);
+            vector<int>a(4,-1);
+            return a;
         }
         
-        return ans;
+        
+        return Ans;
     }
 };
 
