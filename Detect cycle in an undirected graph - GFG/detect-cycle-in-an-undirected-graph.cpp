@@ -4,51 +4,37 @@ using namespace std;
 
 // } Driver Code Ends
 class Solution {
+    private:
+    bool dfs(int node,vector<int>&vis,int par,vector<int>adj[])
+    {
+        vis[node]=1;
+        
+        for(auto x:adj[node])
+        {
+            if(!vis[x])
+            {
+               if (dfs(x,vis,node,adj)==true)
+                      return true;
+            }
+            else
+            {
+                if(par!=x)return true;
+            }
+        }
+        return false;
+    }
   public:
     // Function to detect cycle in an undirected graph.
     bool isCycle(int V, vector<int> adj[]) {
         // Code here
+        vector<int>vis(V);
         
-        
-        // queue<pair<int,int>> bfs;
-        
-        // bfs.push(make_pair(0,-1));
-        
-        // int vis[V]={0};
-        
-        // vis[0]=1;
-        for(int i=0;i<V;i++){
-             
-        queue<pair<int,int>> bfs;
-        
-        bfs.push(make_pair(i,-1));
-        
-        int vis[V]={0};
-        
-        vis[i]=1;
-            
-        while(!bfs.empty())
+        for(int i=0;i<V;i++)
         {
-            pair<int,int>temp=bfs.front();
-            int node=temp.first;
-            int par=temp.second;
-            bfs.pop();
-            
-            for(auto x:adj[temp.first])
-            {
-                if(!vis[x])
-                {
-                    vis[x]=1;
-                    bfs.push(make_pair(x,temp.first));
-                }
-                else
-                  {
-                      if(x!=par)
-                            return true;
-                  }
-            }
+            if(!vis[i] and dfs(i,vis,-1,adj))
+               return true;
         }
-        }
+        
         return false;
     }
 };
