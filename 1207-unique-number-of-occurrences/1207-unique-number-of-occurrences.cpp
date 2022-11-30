@@ -10,17 +10,14 @@ public:
             mp[arr[i]]++;
         }
         
-        vector<int> v;
+        // vector<int> v;
+        
+        unordered_set<int>st;
         
         for(auto x:mp)
         {
-            v.push_back(x.second);
-        }
-        sort(v.begin(),v.end());
-        
-        for(int i=1;i<v.size();i++)
-        {
-            if(v[i]==v[i-1])return false;
+            if(st.count(x.second))return false;
+            st.insert(x.second);
         }
         
         return true;
