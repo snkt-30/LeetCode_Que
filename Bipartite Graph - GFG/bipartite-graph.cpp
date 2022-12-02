@@ -5,13 +5,55 @@ using namespace std;
 // } Driver Code Ends
 class Solution {
     
-    private:
+    // private:
     
-    bool check(int st,int V,vector<int>ajd[],int col[])
-    {
-        queue<int>bfs;
+    // bool check(int st,int V,vector<int>ajd[],int col[])
+    // {
+    //     queue<int>bfs;
         
-        bfs.push(st);
+    //     bfs.push(st);
+        
+    //     while(!bfs.empty())
+    //     {
+    //         int node=bfs.front();
+    //         bfs.pop();
+            
+    //         for(auto it:ajd[node])
+    //         {
+    //             if(col[it]==-1)
+    //             {
+    //                 bfs.push(it);
+    //                 col[it]=!col[node];
+    //             }
+    //             else
+    //             {
+    //                 if(col[it]==col[node])
+    //                   return false;
+    //             }
+    //         }
+    //     }
+    //     return true;
+    // }
+public:
+	bool isBipartite(int V, vector<int>ajd[]){
+	   // // Code here
+	   
+	   int col[V];
+	   
+	   
+	   for(int i=0;i<V;i++)
+	   {
+	       col[i]=-1;
+	   }
+	   
+	   
+	   for(int i=0;i<V;i++)
+	   {
+	       if(col[i]==-1)
+	       {
+	         queue<int>bfs;
+        
+             bfs.push(i);
         
         while(!bfs.empty())
         {
@@ -32,27 +74,6 @@ class Solution {
                 }
             }
         }
-        return true;
-    }
-public:
-	bool isBipartite(int V, vector<int>adj[]){
-	   // // Code here
-	   
-	   int color[V];
-	   
-	   
-	   for(int i=0;i<V;i++)
-	   {
-	       color[i]=-1;
-	   }
-	   
-	   
-	   for(int i=0;i<V;i++)
-	   {
-	       if(color[i]==-1)
-	       {
-	           if(check(i,V,adj,color)==false)
-	              return false;
 	       }
 	   }
 	   return true;
