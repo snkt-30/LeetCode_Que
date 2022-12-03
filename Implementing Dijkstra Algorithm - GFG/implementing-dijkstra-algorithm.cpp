@@ -16,18 +16,18 @@ class Solution
         
         // vector<int> v[V];
         
-      priority_queue<pair<int,int>,vector<pair<int,int>>,greater<pair<int,int>>> pq;
+      set<pair<int,int>>st;
       
-      pq.push(make_pair(0,S));
+      st.insert(make_pair(0,S));
       
       vector<int> dist(V,inf);
       
       dist[S]=0;
       
-      while(!pq.empty())
+      while(!st.empty())
       {
-          pair<int,int>temp=pq.top();
-          pq.pop();
+          pair<int,int>temp=*st.begin();
+          st.erase(temp);
           
           int prev=temp.second;
           int pre_dist=temp.first;
@@ -37,10 +37,14 @@ class Solution
               int next=x[0];
               int next_dist=x[1];
               
-              if(dist[next]>dist[prev]+next_dist)
+              if(dist[next]>pre_dist+next_dist)
               {
-                  dist[next]=dist[prev]+next_dist;
-                  pq.push(make_pair(dist[next],next));
+                 if(dist[next]!=INT_MAX)
+                   st.erase({dist[next],next});
+                   
+                  dist[next]=pre_dist+next_dist;
+                  
+                  st.insert(make_pair(dist[next],next));
               }
           }
       }
