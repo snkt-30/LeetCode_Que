@@ -103,7 +103,7 @@ class Solution {
         int lh=height(root->left);
         int rh=height(root->right);
         
-        dai=max(dai,lh+rh);
+        dai=max(dai,lh+rh+1);
         
         return max(lh,rh)+1;
     }
@@ -114,7 +114,7 @@ class Solution {
         
         height(root);
         
-        return dai+1;
+        return dai;
     }
 };
 
