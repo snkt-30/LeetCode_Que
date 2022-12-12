@@ -1,25 +1,26 @@
-struct hashFunction 
-{
-  size_t operator()(const vector<int> 
-                    &myVector) const 
-  {
-    std::hash<int> hasher;
-    size_t answer = 0;
+// struct hashFunction 
+// {
+//   size_t operator()(const vector<int> 
+//                     &myVector) const 
+//   {
+//     std::hash<int> hasher;
+//     size_t answer = 0;
       
-    for (int i : myVector) 
-    {
-      answer ^= hasher(i) + 0x9e3779b9 + 
-                (answer << 6) + (answer >> 2);
-    }
-    return answer;
-  }
-};
+//     for (int i : myVector) 
+//     {
+//       answer ^= hasher(i) + 0x9e3779b9 + 
+//                 (answer << 6) + (answer >> 2);
+//     }
+//     return answer;
+//   }
+// };
 
 class Solution {
 public:
     vector<vector<int>> threeSum(vector<int>& nums) {
             
-        unordered_set<vector<int>, hashFunction> s;        
+        // unordered_set<vector<int>, hashFunction> s; 
+           vector<vector<int>> ans;
         sort(nums.begin(),nums.end());
         
         int n=nums.size();
@@ -34,7 +35,7 @@ public:
             {
                 if(nums[st]+nums[end]==req)
                 {
-                   s.insert({fi,nums[st],nums[end]});
+                    ans.push_back({fi,nums[st],nums[end]});
                     // temp.clear();
                     int f=nums[st];
                     int se=nums[end];
@@ -49,12 +50,12 @@ public:
             
             while(i+1<n and nums[i+1]==nums[i])i++;
         }        
-        vector<vector<int>> ans;
+//         vector<vector<int>> ans;
         
-        for(auto x:s)
-        {
-            ans.push_back(x);
-        }
+//         for(auto x:s)
+//         {
+//             ans.push_back(x);
+//         }
         return ans;
     }
 };
