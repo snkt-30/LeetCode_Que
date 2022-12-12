@@ -18,17 +18,14 @@ struct hashFunction
 class Solution {
 public:
     vector<vector<int>> threeSum(vector<int>& nums) {
-      
-        
-        unordered_set<vector<int>, hashFunction> s;
-        
+            
+        unordered_set<vector<int>, hashFunction> s;        
         sort(nums.begin(),nums.end());
         
         int n=nums.size();
         
-        for(int i=0;i<n-2;i++)
-        {
-            
+        for(int i=0;i<n;i++)
+        {           
             int st=i+1,end=n-1;
             int fi=nums[i];
             int req=-fi;
@@ -39,15 +36,19 @@ public:
                 {
                    s.insert({fi,nums[st],nums[end]});
                     // temp.clear();
-                    st++;
-                    end--;
+                    int f=nums[st];
+                    int se=nums[end];
+                    while(st<end and f==nums[st])st++;
+                    while(st<end and se==nums[end])end--;
                 }
                 else if(nums[st]+nums[end]>req)
                     end--;
                 else 
                      st++;
             }
-        }
+            
+            while(i+1<n and nums[i+1]==nums[i])i++;
+        }        
         vector<vector<int>> ans;
         
         for(auto x:s)
