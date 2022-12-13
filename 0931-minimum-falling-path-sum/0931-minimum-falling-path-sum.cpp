@@ -4,11 +4,11 @@ public:
         
         int n=matrix.size();
         int m=matrix[0].size();
-        vector<vector<int>> ans(n,vector<int>(m,0));
+        vector<vector<int>> dp(n,vector<int>(m,0));
         
         for(int i=0;i<m;i++)
         {
-            ans[0][i]=matrix[0][i];
+            dp[0][i]=matrix[0][i];
         }
         
         for(int i=1;i<n;i++)
@@ -16,17 +16,17 @@ public:
             for(int j=0;j<m;j++)
             {
                 int up_left=INT_MAX;
-                int up=ans[i-1][j];
+                int up=dp[i-1][j];
                 int up_right=INT_MAX;
                 if(j>0)
                 {
-                   up_left=ans[i-1][j-1]; 
+                   up_left=dp[i-1][j-1]; 
                 }
                 if(j<m-1)
                 {
-                    up_right=ans[i-1][j+1];
+                    up_right=dp[i-1][j+1];
                 }
-                ans[i][j]+=matrix[i][j]+min({up_left,up,up_right});
+                dp[i][j]+=matrix[i][j]+min({up_left,up,up_right});
                 
             }
         }
@@ -35,7 +35,7 @@ public:
         
         for(int i=0;i<n;i++)
         {
-            res=min(res,ans[n-1][i]);
+            res=min(res,dp[n-1][i]);
         }
         
         return res;
