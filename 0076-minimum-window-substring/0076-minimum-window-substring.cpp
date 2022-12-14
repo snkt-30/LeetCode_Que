@@ -6,6 +6,16 @@ public:
 
 	int ns = s.length();
 	int nt = t.length();
+        
+        if(nt>ns)
+             return "";
+        
+        if(ns==1 and nt==1)
+        {
+            if(s[0]==t[0])
+                return t;
+            return "";
+        }
 
 	int cnt = 0;
 
@@ -18,8 +28,11 @@ public:
 
 	int in = 0, ls = 0;
 
-	set<pair<int, int>> st;
+	// set<pair<int, int>> st;
 	queue<char> q;
+        
+        int len=INT_MAX;
+        int ind=-1;
 	while (ls < ns)
 	{
 		// precomputation
@@ -34,13 +47,17 @@ public:
 
 		if (cnt != 0)
 			ls++;
-
 		// sataisfied cond
-		if (cnt == 0)
+		 if (cnt == 0)
 		{
-			while (cnt == 0)
+			while (cnt == 0 and in<=ls)
 			{
-				st.insert(make_pair(ls - in + 1, in));
+                int curr=ls-in+1;
+                if(curr < len)
+                {
+                    len = curr;
+                        ind = in;
+                }
 				q.pop();
 				if (mp.count(s[in]))
 				{
@@ -50,24 +67,22 @@ public:
 				}
 				in++;
 			}
+            
 			ls++;
-
 		}
 	}
-
-	pair<int, int> temp = *st.begin();
-	st.erase(temp);
-	int st_ind = temp.second;
-	int sz = temp.first;
-
-	string res = "";
-
-	while (sz)
-	{
-		res.push_back(s[st_ind]);
-		st_ind++;
-		sz--;
-	}
-	return res;
+        // --in;
+        cout<<len<<" "<<ind<<endl;
+        
+        string res="";
+        if(ind==-1)
+            return res;
+        
+        while(len--)
+        {
+            res.push_back(s[ind]);
+            ind++;
+        }
+        return res;
     }
 };
