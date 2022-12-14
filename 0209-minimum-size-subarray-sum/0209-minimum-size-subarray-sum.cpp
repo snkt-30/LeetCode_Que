@@ -3,7 +3,7 @@ public:
     int minSubArrayLen(int target, vector<int>& nums) {
         
         
-        int len=INT_MAX;
+        int len=100001;
         
         int st_ind=0,end_ind=0;
         
@@ -33,6 +33,6 @@ public:
             }
         }
         
-        return len==INT_MAX?0:len;
+        return len==100001?0:len;
     }
 };
