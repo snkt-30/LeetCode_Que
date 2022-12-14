@@ -9,9 +9,7 @@ public:
         
         int sum=0;
         
-        int n=nums.size();
-        
-        while(end_ind<n)
+        while(end_ind<nums.size())
         {
             sum+=nums[end_ind];
             
