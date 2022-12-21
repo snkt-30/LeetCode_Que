@@ -26,17 +26,19 @@ class Solution {
 					{
 						auto node = bfs.front();
 						bfs.pop();
+                        
+                        int col=vis[node];
 
 						for (auto tr : adj[node])
 						{
 							if (vis[tr] == -1)
 							{
-								vis[tr] =!vis[node];
+								vis[tr] =!col;
 								bfs.push(tr);
 							}
 							else
 							{
-								if (vis[tr] == vis[node])return false;
+								if (vis[tr] == col)return false;
 							}
 						}
 					}
