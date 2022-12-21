@@ -11,48 +11,38 @@ class Solution {
 				adj[u].push_back(v);
 				adj[v].push_back(u);
 			}
-
+            
 			vector<int>vis(n + 1, -1);
-
-
 
 			for (int i = 1; i <= n; i++) {
 
 				if (vis[i] == -1)
 				{
-					queue<pair<int, int>> bfs;
+					queue<int> bfs;
 
-					bfs.push(make_pair(i, 0));
+					bfs.push(i);
 					vis[i] = 0;
 					while (!bfs.empty())
 					{
-						auto x = bfs.front();
+						auto node = bfs.front();
 						bfs.pop();
-
-						int node = x.first;
-						int par_col = x.second;
 
 						for (auto tr : adj[node])
 						{
 							if (vis[tr] == -1)
 							{
-								vis[tr] = !par_col;
-								bfs.push({tr, vis[tr]});
+								vis[tr] =!vis[node];
+								bfs.push(tr);
 							}
 							else
 							{
-								if (vis[tr] == par_col)return false;
+								if (vis[tr] == vis[node])return false;
 							}
 						}
 					}
 				}
 			}
-
-			// for(int i=1;i<=n;i++)
-			// {
-			//     cout<<vis[i]<<" "<<i<<endl;
-			// }
-			// cout<<"n"<<endl;
+            
 			return true;
 
 
