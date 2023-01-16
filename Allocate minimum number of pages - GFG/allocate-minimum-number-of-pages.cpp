@@ -70,7 +70,7 @@ class Solution
             sum+=pages[i];
         }
         
-        ll lo=pages[0],hi=sum;
+        ll lo=pages[n-1],hi=sum;
         
         ll ans=INT_MAX;
         
