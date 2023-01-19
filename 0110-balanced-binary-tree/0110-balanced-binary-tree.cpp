@@ -27,7 +27,7 @@ class Solution {
             flag=false;
         }
         
-        cout<<root->val<<" "<<lh<<" "<<rh<<" "<<ch<<endl;
+        // cout<<root->val<<" "<<lh<<" "<<rh<<" "<<ch<<endl;
         return (max(lh,rh)+1);
     }   
 public:     
