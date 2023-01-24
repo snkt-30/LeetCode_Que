@@ -21,23 +21,11 @@ public:
 	    
 	    sort(store.begin(),store.end());
    
-	    map<int,int> mp;
-	    
 	    for(int i=0;i<n;i++)
 	    {
-	        mp[store[i]]=i;
+	        int ele=a[i];
 	        
-	    }
-	    
-	   // for(int i=0;i<n;i++)
-	   // {
-	   //     cout<<store[i]<<" ";
-	   // }
-	   // cout<<endl;
-	    
-	    for(int i=0;i<n;i++)
-	    {
-	        int ind=mp[a[i]];
+	        int ind=lower_bound(store.begin(),store.end(),ele)-store.begin();
 	        a[i]=ind;
 	    }
 
