@@ -104,30 +104,30 @@ class Solution
     vector<int> verticalOrder(Node *root)
     {
         //Your code here
-        map<int,map<int,vector<int>>> mp;
+        map<int,map<int,vector<int>>>mp; // level axis ratio
         
-        queue<pair<Node*,pair<int,int>>> bfs;
+        queue<pair<Node*,pair<int,int>>> q;
         
-        bfs.push(make_pair(root,make_pair(0,0)));
+        q.push(make_pair(root,make_pair(0,0)));
         
-        while(!bfs.empty())
+        while(!q.empty())
         {
-            auto p=bfs.front();
-            bfs.pop();
+            auto x=q.front();
+            q.pop();
             
-            Node* node=p.first;
-            int level=p.second.first;
-            int axis=p.second.second;
+          Node* node=x.first;
+          int level=x.second.first;
+          int axis=x.second.second;
             
             mp[axis][level].push_back(node->data);
             
             if(node->left)
             {
-                bfs.push(make_pair(node->left,make_pair(level+1,axis-1)));
+                q.push(make_pair(node->left,make_pair(level+1,axis-1)));
             }
             if(node->right)
             {
-                bfs.push(make_pair(node->right,make_pair(level+1,axis+1)));
+                q.push(make_pair(node->right,make_pair(level+1,axis+1)));
             }
         }
         
@@ -135,13 +135,19 @@ class Solution
         
         for(auto x:mp)
         {
-            vector<int>col;
-            for(auto p:x.second)
-               col.insert(col.end(),p.second.begin(),p.second.end());
-             
-             for(auto it:col)
-               ans.push_back(it);
+        
+            for(auto t:x.second)
+            {
+              
+                for(auto ele:t.second)
+                {
+                    ans.push_back(ele);
+                }
+               
+            }
+           
         }
+        
         return ans;
     }
 };
