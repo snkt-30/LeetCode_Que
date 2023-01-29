@@ -12,58 +12,26 @@
 class Solution {
 public:
     int widthOfBinaryTree(TreeNode* root) {
-        
-        if(!root)return 0;
-        queue<pair<TreeNode*,int>> bfs;
-        
-        bfs.push(make_pair(root,0));
-        
-        int mx_width=0;
-        
-        while(!bfs.empty())
-        {
-            int mn_ind=bfs.front().second;
-            
-            int n=bfs.size();
-            
-            int first=0,second=0;
-            
-            for(int i=0;i<n;i++)
-            {
-                pair<TreeNode* ,int> temp=bfs.front();
-                bfs.pop();
-                
-                TreeNode* node=temp.first;
-                int ind=temp.second;
-                
-                long long int curr_ind = ind-mn_ind;
-                
-                if(i==0)
-                {
-                    first=curr_ind;
-                }
-                
-                if(i==n-1)
-                {
-                    second=curr_ind;
-                }
-                
-                if(node->left)
-                {
-                    bfs.push(make_pair(node->left,curr_ind*2+1));
-                }
-                
-                if(node->right)
-                {
-                    bfs.push(make_pair(node->right,curr_ind*2+2));
-                }
+     queue<pair<TreeNode*,int>>q;
+        q.push({root,0});
+        long ans = 0;
+        while(!q.empty()){
+            int size = q.size();
+            long l = 0;
+            long r = 0;
+            for(int i=0; i<size; i++){
+                auto top = q.front();
+                q.pop();
+                TreeNode* node = top.first;
+                long idx = top.second;
+                if(i == 0) l = idx;
+                if(i == size-1) r = idx;
+                if(node->left) q.push({node->left,idx*2+1});
+                if(node->right) q.push({node->right,idx*2+2});
             }
-            int curr_width=second-first+1;
-            
-            mx_width=max(mx_width,curr_width);
+            ans = max(ans,r-l+1);
         }
-        
-        return mx_width;
+        return ans;
         
         
     }
