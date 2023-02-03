@@ -1,5 +1,5 @@
 # LeetCode_Que
-An Attempt to remain consistent about DSA Practice, and also help the community to make a good que bank
+An Attempt to remain consistent about DSA Practice.
 
 
 <h1> DSA Questions Collection to Ace the Interview </h1>
