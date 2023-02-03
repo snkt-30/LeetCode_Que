@@ -46,9 +46,7 @@ public:
         
          int n=edges.size();
         
-        DSU obj(n);
-        
-        vector<int>ans;
+          DSU obj(n);
         
         for(auto x:edges)
         {
@@ -64,12 +62,11 @@ public:
             }
             else
             {
-               ans=x;
-                break;
+               return x;
             }
         }
         
-        return ans;
+        return {};
         
         
         
