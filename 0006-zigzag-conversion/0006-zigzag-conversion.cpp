@@ -12,7 +12,7 @@ public:
         int n=s.length();
         
         if(n<=2 or numRows>=n or numRows==1)
-            return s;
+                return s;
 
         int row=0,col=0;
         
