@@ -48,11 +48,14 @@ Node* find_node(Node* root, int tar)
       
      return root;
 }
+
+
 class Solution{
 public:
     long long int verticallyDownBST(Node *root,int target){
         // Code here
         
+        if(!root)return -1;
         map<int,vector<int>>mp;
         
         queue<pair<Node*,int>> bfs;
