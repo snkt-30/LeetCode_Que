@@ -5,69 +5,68 @@
 class Solution
 {
 
-  vector<vector < int>> res;
-    vector<int>temp;
-    int src=0;
+    vector<vector < int>> res;
+    vector<int> temp;
+    int src = 0;
     int dest;
-    public:
     
-    void dfs(vector<vector<int>>&g,int node=0)
+    public:
+
+        void dfs(vector<vector < int>> &g, int node = 0)
+        {
+            temp.pb(node);
+
+            if (node == dest)
+            {
+                res.pb(temp);
+            }
+            else
+                for (auto x: g[node])
+                    dfs(g, x);
+
+            temp.pop_back();
+        }
+    
+    vector<vector < int>> allPathsSourceTarget(vector<vector < int>> &g)
     {
-        temp.pb(node);
-        
-        if(node==dest)
-        {
-            res.pb(temp);
-        }
-        else
-            for(auto x:g[node])
-                dfs(g,x);
-        
-        temp.pop_back();
-        
-        
-    }
-        vector<vector < int>> allPathsSourceTarget(vector<vector < int>> &g)
-        {
-            int n = g.size();
-            
-            dest=n-1;
-            dfs(g);
+        int n = g.size();
+        dest = n - 1;
+        dfs(g);
 
-            return res;
+        return res;
 
-            /*      
-                        queue<pair<int, vector < int>>> bfs;
+        /*     
+                    queue<pair<int, vector < int>>> bfs;
 
-                        vector<vector < int>> res;
+                    vector<vector < int>> res;
 
-                        vector<int> temp = { src};
+                    vector<int> temp = { src};
 
-                        bfs.push(mp(src, temp));
+                    bfs.push(mp(src, temp));
 
-                        while (!bfs.empty())
+                    while (!bfs.empty())
+                    {
+                        int node = bfs.front().first;
+
+                        vector<int> temp = bfs.front().second;
+
+                        bfs.pop();
+
+                        for (auto x: g[node])
                         {
-                            int node = bfs.front().first;
+                            temp.pb(x);
 
-                            vector<int> temp = bfs.front().second;
-
-                            bfs.pop();
-
-                            for (auto x: g[node])
+                            if (x == des)
                             {
-                                temp.pb(x);
-
-                                if (x == des)
-                                {
-                                    res.push_back(temp);
-                                }
-
-                                bfs.push(mp(x, temp));
-                                temp.pop_back();
+                                res.push_back(temp);
                             }
-                        }
-                        return res;            
-            */
 
-        }
+                            bfs.push(mp(x, temp));
+                            temp.pop_back();
+                        }
+                    }
+                    return res;            
+        */
+
+    }
 };
