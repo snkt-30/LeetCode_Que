@@ -6,14 +6,10 @@ public:
         {
           return ((high-low+1)/2)+1;
         }
-        else if( !low&1 and !high&1)
+        else
         {
             return ((high-low+1)/2);
         }
-         else
-           {
-               return ((high-low+1)/2);
-           }
        
     }
 };
