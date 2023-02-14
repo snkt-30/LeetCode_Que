@@ -4,9 +4,9 @@ class Solution
         bool canVisitAllRooms(vector<vector < int>> &rooms)
         {
 
-            int n = rooms.size();
+            int no_of_rooms = rooms.size();
 
-             vector<int> visited_rooms(n, 0);
+            vector<int> visited_rooms(no_of_rooms, 0);
 
             visited_rooms[0] = true;
 
@@ -19,19 +19,19 @@ class Solution
                 int node = bfs.front();
                 bfs.pop();
 
-                for (auto x: rooms[node])
+                for (auto rooms_keys: rooms[node])
                 {
-                    if (visited_rooms[x] == false)
+                    if (visited_rooms[rooms_keys] == false)
                     {
-                        visited_rooms[x] = true;
-                        bfs.push(x);
+                        visited_rooms[rooms_keys] = true;
+                        bfs.push(rooms_keys);
                     }
                 }
             }
             
-            for(int i=0;i<n;i++)
+            for(int room=0;room<no_of_rooms;room++)
             {
-                if(visited_rooms[i]==0)
+                if(visited_rooms[room]==0)
                     return false;
             }
             
