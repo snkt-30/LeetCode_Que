@@ -3,7 +3,7 @@ public:
     int findJudge(int n, vector<vector<int>>& trust) {
         
         
-        vector<int> indegre(n+1,0),outdegr(n+1,0);
+        vector<int> indegre(n+1,0);
         
         for(auto x:trust)
         {
