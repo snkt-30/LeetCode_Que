@@ -11,12 +11,12 @@ public:
             int v=x[1];
             
             indegre[v]++;
-            outdegr[u]++;
+            indegre[u]--;
         }
         
         for(int i=1;i<=n;i++)
         {
-            if(indegre[i]==n-1 and outdegr[i]==0)
+            if(indegre[i]==n-1 )
                 return i;
             
         }
