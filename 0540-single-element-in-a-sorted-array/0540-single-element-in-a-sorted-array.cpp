@@ -3,6 +3,15 @@ class Solution
     public:
         int singleNonDuplicate(vector<int> &a)
         {
+            
+            int res=0;
+            
+            for(auto x:a)
+            {
+                res=res^x;
+            }
+            
+            return res;
 
             int n = a.size();
 
