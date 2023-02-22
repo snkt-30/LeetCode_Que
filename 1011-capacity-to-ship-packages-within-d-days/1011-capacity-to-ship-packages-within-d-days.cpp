@@ -1,66 +1,58 @@
-#define ll long long int 
 class Solution {
+    
     private:
-    static bool isPossible(vector<int>&w,int days,int range)
+    
+    bool isValid(vector<int>&a,int d,int mx_w)
     {
-        int mx_days=1;
-        ll pack=0;
         
-        for(int i=0;i<w.size();i++)
+        int days=1;
+        
+        int curr_day_wei=0;
+        
+        for(int i=0;i<a.size();i++)
         {
-            if(w[i]>range)return false;
             
-            if(pack + w[i] > range)
+            if(a[i]>mx_w)
+                return false;
+            
+            if(curr_day_wei+a[i]>mx_w)
             {
-                mx_days+=1;
-                pack=w[i];
+                days++;
+                curr_day_wei=a[i];
             }
             else
             {
-                pack+=w[i];
+                curr_day_wei+=a[i];
             }
         }
         
-        if(mx_days > days)return false;
+        if(days>d)
+            return false;
         
         return true;
     }
 public:
-    int shipWithinDays(vector<int>& w, int d) {
+    int shipWithinDays(vector<int>& a, int days) {
         
+        int mx=0,sum=0;
         
-        // let say if we ship the packages less than given days then we got our possible ans 
-        // in order to minimize it we have to find the less value than gotten as if we got our 
-        // ans let say 115 and we ship all package in 2 day instead of 5 days the we got out 
-        // ans no we have to find the as minimum value as we can find than 115 to get out 
-        // desired ans
-        
-        // it is like standard pages allocation problem
-        
-        // no our ranges of searches will be
-        // no let say i have atleast max of all ele is the least capacity of ship
-        
-        int mx_weight=INT_MIN;
-        
-        ll sum=0;
-        
-        for(int i=0;i<w.size();i++)
+        for(int i=0;i<a.size();i++)
         {
-            int x=w[i];
-            mx_weight=max(mx_weight,x);
-            sum+=x;
+            mx=max(mx,a[i]);
+            sum+=a[i];
         }
         
-        ll lo=mx_weight,hi=sum;
+        int lo=1,hi=sum;
         
-        ll ans=INT_MAX;
-  
-        while(lo <= hi)
+        int res=0;
+        
+        while(lo<=hi)
         {
-            ll mid=(lo+hi)/2;
-            if(isPossible(w,d,mid))
+            int mid=(lo+hi)/2;
+            
+            if(isValid(a,days,mid))
             {
-                ans=min(ans,mid);
+                res=mid;
                 hi=mid-1;
             }
             else
@@ -69,7 +61,6 @@ public:
             }
         }
         
-        return ans;
-    
+        return res;
     }
 };
