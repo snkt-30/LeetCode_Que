@@ -45,9 +45,38 @@ public:
         
         // memset(dp,-1,sizeof(dp));
         
-        vector<vector<int>> dp(n+1,vector<int>(sum+1,-1));
+        vector<vector<bool>> dp(n+1,vector<bool>(sum+1));
         
-        return helper(arr,arr.size(),sum,dp);
+        
+        // dp[0][0]=true;
+        
+         for(int i=0;i<=sum;i++)
+         {
+             dp[0][i]=false;
+         }
+         
+         for(int i=0;i<=n;i++)
+         {
+             dp[i][0]=true;
+         }
+         
+         for(int i=1;i<=n;i++)
+         {
+             for(int j=1;j<=sum;j++)
+             {
+                 bool take=0;
+                 
+                 if(arr[i-1]<=j)
+                   take=dp[i-1][j-arr[i-1]];
+                   
+                  bool not_take=dp[i-1][j];
+                  
+                 dp[i][j]=(take or not_take);
+             }
+         }
+        
+        
+        return dp[n][sum];
     }
 };
 
