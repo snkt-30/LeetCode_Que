@@ -4,29 +4,29 @@ class Solution {
     
     private:
     
-    bool helper(vector<int>&arr,int sum,int ind,vector<vector<int>>&dp)
-    {
-        if(ind==0)
-        {
-           if(sum==0)
-               return true;
+//     bool helper(vector<int>&arr,int sum,int ind,vector<vector<int>>&dp)
+//     {
+//         if(ind==0)
+//         {
+//            if(sum==0)
+//                return true;
             
-            return false;
-        }
+//             return false;
+//         }
         
-        if(dp[ind][sum]!=-1)
-            return dp[ind][sum];
+//         if(dp[ind][sum]!=-1)
+//             return dp[ind][sum];
         
-        bool take=0;
+//         bool take=0;
         
-        if(arr[ind-1]<=sum)
-            take=helper(arr,sum-arr[ind-1],ind-1,dp);
+//         if(arr[ind-1]<=sum)
+//             take=helper(arr,sum-arr[ind-1],ind-1,dp);
         
-        bool not_take=helper(arr,sum,ind-1,dp);
+//         bool not_take=helper(arr,sum,ind-1,dp);
         
-        return dp[ind][sum]=(take or not_take);
+//         return dp[ind][sum]=(take or not_take);
         
-    }
+//     }
 public:
     bool canPartition(vector<int>& nums) {
         
