@@ -46,7 +46,35 @@ public:
         vector<vector<int>> dp(n+1,vector<int>(sum+1,-1));
         
         
-        return helper(nums,sum,n,dp);
+        for(int i=0;i<=sum;i++)
+        {
+            dp[0][i]=false;
+        }
+        
+        for(int i=0;i<=n;i++)
+        {
+            dp[i][0]=true;
+        }
+        
+        
+        for(int i=1;i<=n;i++)
+        {
+            for(int j=1;j<=sum;j++)
+            {
+                bool take=0;
+                
+                if(nums[i-1]<=j)
+                {
+                    take=dp[i-1][j-nums[i-1]];
+                }
+                
+                bool not_take=dp[i-1][j];
+                
+                dp[i][j]=(take or not_take);
+            }
+        }
+        
+      return dp[n][sum];
         
         
         
