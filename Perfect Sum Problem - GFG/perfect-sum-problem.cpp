@@ -37,11 +37,64 @@ class Solution{
 	{
         // Your code goes here
         
-        int cnt=0;
+        // int cnt=0;
         
-        vector<vector<int>> dp(n+1,vector<int>(sum+1,-1));
+        vector<vector<int>> dp(n+1,vector<int>(sum+1,0));
         
-        return helper(arr,n,0,sum,dp);
+        // for(int i=0;i<=n;i++)
+        // {
+        //     for(int j=0;j<=sum;j++)
+        //     {
+        //         cout<<dp[i][j]<<" ";
+        //     }
+        //     cout<<endl;
+        // }
+        
+        
+        for(int i=0;i<=sum;i++)
+        {
+            dp[0][i]=0;
+        }
+        
+        for(int i=0;i<=n;i++)
+        {
+            dp[i][0]=1;
+        }
+        
+        for(int i=1;i<=n;i++)
+        {
+            for(int j=0;j<=sum;j++)
+            {
+                int take=0;
+                
+                if(arr[i-1]<=j)
+                {
+                    take=dp[i-1][j-arr[i-1]]%mod;
+                }
+                
+                int not_take=dp[i-1][j]%mod;
+                
+                dp[i][j]=((take%mod)+(not_take%mod))%mod;
+                
+                
+            }
+        }
+        
+        // int ans= helper(arr,n,0,sum,dp);
+        
+        int ans=dp[n][sum];
+         
+         
+        //   for(int i=0;i<=n;i++)
+        // {
+        //     for(int j=0;j<=sum;j++)
+        //     {
+        //         cout<<dp[i][j]<<" ";
+        //     }
+        //     cout<<endl;
+        // }
+        
+        return ans;
 	}
 	  
 };
