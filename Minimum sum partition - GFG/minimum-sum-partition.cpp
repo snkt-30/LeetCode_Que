@@ -3,44 +3,66 @@
 using namespace std;
 
 // } Driver Code Ends
+
+#define ll long long int
+
 class Solution{
-
-  public:
-int solve(int i,int summ,int sum,int arr[],int n,vector<vector<int>>&dp){
-
-        if(i==n){
-
-            return abs(sum-2*summ);
-
+    
+    
+    private:
+    ll helper(int arr[],int ind,int curr_sum,vector<vector<int>>&dp)
+    {
+        if(ind==0)
+        {
+            ll val=sum;
+            
+            val=val-2*curr_sum;
+            
+            return val;
         }
-
-        if(dp[i][summ]!=-1)return dp[i][summ];
-
-        int pick=solve(i+1,summ+arr[i],sum,arr,n,dp);
-
-        int notpick=solve(i+1,summ,sum,arr,n,dp);
-
-        return dp[i][summ]=min(pick,notpick);
-
+        
+        if(dp[ind][curr_sum]!=-1)
+        {
+            return dp[ind][curr_sum];
+        }
+        
+    
+    ll take=100005;
+    
+    if(arr[ind-1]+curr_sum <= s2)
+    {
+        take=helper(arr,ind-1,curr_sum+arr[ind-1],dp);
     }
-
- int minDifference(int arr[], int n)  { 
-
-     // Your code goes here
-
-     int sum=0;
-
-     for(int i=0;i<n;i++){
-
-         sum+=arr[i];
-
-     }
-
-     vector<vector<int>>dp(n,vector<int>(sum,-1));
-
-     return solve(0,0,sum,arr,n,dp);
-
- } 
+    
+    ll not_take=helper(arr,ind-1,curr_sum,dp);
+    
+    return dp[ind][curr_sum]=min(ans,min(take,not_take));
+    }
+   
+  public:
+  
+   ll sum=0;
+   ll s2=0;
+   ll ans=INT_MAX;
+   
+	int minDifference(int arr[], int n)  { 
+	    // Your code goes here
+	    
+	    for(int i=0;i<n;i++)
+	    {
+	        sum+=arr[i];
+	    }
+	    
+	     s2=(sum)/2;
+	     
+	     vector<vector<int>> dp(n+1,vector<int>(s2+1,-1));
+	     
+	     return helper(arr,n,0,dp);
+	     
+	     
+	    
+	    
+	} 
 };
 
 
