@@ -36,7 +36,7 @@ class Solution{
     
     ll not_take=helper(arr,ind-1,curr_sum,dp);
     
-    return dp[ind][curr_sum]=min(ans,min(take,not_take));
+    return dp[ind][curr_sum]=min(take,not_take);
     }
    
   public:
