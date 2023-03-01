@@ -37,9 +37,7 @@ class Solution {
                 r_ind++;
             }
         } 
-    }
-    
-    
+    }   
     void mergeSort(int st,int ls,vector<int>&a)
     {
         if(st<ls)
@@ -56,13 +54,29 @@ public:
     vector<int> sortArray(vector<int>& nums) {
         
         
-        int n=nums.size();
+//         int n=nums.size();
         
-        vector<int> res(nums.begin(),nums.end());
+//         vector<int> res(nums.begin(),nums.end());
         
-        mergeSort(0,n-1,res);
+//         mergeSort(0,n-1,res);   
+//         return res;
         
+        priority_queue<int,vector<int>,greater<int>> pq;
         
-        return res;
+        for(auto x:nums)
+        {
+            pq.push(x);
+        }
+        nums.clear();
+        
+        while(!pq.empty())
+        {
+            int ele=pq.top();
+            pq.pop();
+            
+            nums.push_back(ele);
+        }
+        
+        return nums;
     }
 };
