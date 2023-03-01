@@ -54,7 +54,7 @@ public:
     vector<int> sortArray(vector<int>& nums) {
         
         
-//         int n=nums.size();
+        int n=nums.size();
         
 //         vector<int> res(nums.begin(),nums.end());
         
@@ -76,6 +76,8 @@ public:
             
             nums.push_back(ele);
         }
+        
+        // return (nums.begin()+n,nums.end());
         
         return nums;
     }
