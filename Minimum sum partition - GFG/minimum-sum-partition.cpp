@@ -46,23 +46,17 @@ class Solution{
 	        }
 	    }
 	    
-	    vector<int>v;
+	  int s1=0;
 	    
 	    for(int i=0;i<=(sum/2);i++)
 	    {
 	        if(dp[n][i]==true)
 	        {
-	            v.push_back(i);
-	           // cout<<i<<" ";
+	           s1=i;
 	        }
 	    }
 	    
-	    ll ans=INT_MAX;
-	    
-	    for(int i=0;i<v.size();i++)
-	    {
-	        ans=min(ans,sum-(2*v[i]));
-	    }
+	 ll ans=(sum-2*s1);
 	    
 	    return ans;
 	    
