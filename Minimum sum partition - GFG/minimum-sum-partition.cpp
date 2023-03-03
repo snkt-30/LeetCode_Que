@@ -5,62 +5,66 @@ using namespace std;
 // } Driver Code Ends
 
 #define ll long long int
-
 class Solution{
-    
-    
-    private:
-    ll helper(int arr[],int ind,int curr_sum,vector<vector<int>>&dp)
-    {
-        if(ind==0)
-        {
-            ll val=sum;
-            
-            val=val-2*curr_sum;
-            
-            return val;
-        }
-        
-        if(dp[ind][curr_sum]!=-1)
-        {
-            return dp[ind][curr_sum];
-        }
-        
-    
-    ll take=100005;
-    
-    if(arr[ind-1]+curr_sum <= s2)
-    {
-        take=helper(arr,ind-1,curr_sum+arr[ind-1],dp);
-    }
-    
-    ll not_take=helper(arr,ind-1,curr_sum,dp);
-    
-    return dp[ind][curr_sum]=min(take,not_take);
-    }
-   
+
   public:
-  
-   ll sum=0;
-   ll s2=0;
-   ll ans=INT_MAX;
-   
 	int minDifference(int arr[], int n)  { 
 	    // Your code goes here
+	    ll sum=0;
 	    
 	    for(int i=0;i<n;i++)
 	    {
 	        sum+=arr[i];
 	    }
 	    
-	     s2=(sum)/2;
-	     
-	     vector<vector<int>> dp(n+1,vector<int>(s2+1,-1));
-	     
-	     return helper(arr,n,0,dp);
-	     
-	     
+	    vector<vector<bool>> dp(n+1,vector<bool>(sum+1));
 	    
+	    for(int i=0;i<=sum;i++)
+	    {
+	        dp[0][i]=false;
+	    }
+	    
+	    for(int i=0;i<=n;i++)
+	    {
+	        dp[i][0]=true;
+	    }
+	    
+	    for(int i=1;i<=n;i++)
+	    {
+	        for(int j=1;j<=sum;j++)
+	        {
+	            bool take=false;
+	            
+	            if(arr[i-1]<=j)
+	            {
+	                take=dp[i-1][j-arr[i-1]];
+	            }
+	            
+	            bool not_take=dp[i-1][j];
+	            
+	            dp[i][j]=(take or not_take);
+	        }
+	    }
+	    
+	    vector<int>v;
+	    
+	    for(int i=0;i<=(sum/2);i++)
+	    {
+	        if(dp[n][i]==true)
+	        {
+	            v.push_back(i);
+	           // cout<<i<<" ";
+	        }
+	    }
+	    
+	    ll ans=INT_MAX;
+	    
+	    for(int i=0;i<v.size();i++)
+	    {
+	        ans=min(ans,sum-(2*v[i]));
+	    }
+	    
+	    return ans;
 	    
 	} 
 };
