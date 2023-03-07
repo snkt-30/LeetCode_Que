@@ -24,9 +24,7 @@ bool isPossible(long long int tm, int total, vector<int> &a){
 public:
     long long minimumTime(vector<int> &time, int totalTrips)
     {
-        sort(time.begin(), time.end());
-
-        long long int lo = 1, hi = 1LL* *min_element(time.begin(),time.end())*totalTrips;
+        long long int lo = 1, hi =10000000000000000;
 
         while (lo < hi)
         {
