@@ -26,7 +26,7 @@ public:
     {
         sort(time.begin(), time.end());
 
-        long long int lo = 1, hi = 1LL* *max_element(time.begin(),time.end())*totalTrips;
+        long long int lo = 1, hi = 1LL* *min_element(time.begin(),time.end())*totalTrips;
 
         while (lo < hi)
         {
