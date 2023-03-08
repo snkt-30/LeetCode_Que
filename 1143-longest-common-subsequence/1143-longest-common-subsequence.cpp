@@ -1,32 +1,32 @@
 class Solution
 {
 
-    private:
+//     private:
 
-        int lcs(string x, string y, int n, int m, vector<vector < int>> &dp)
-        {
-            if (n == 0 or m == 0)
-            {
-                return 0;
-            }
+//         int lcs(string x, string y, int n, int m, vector<vector < int>> &dp)
+//         {
+//             if (n == 0 or m == 0)
+//             {
+//                 return 0;
+//             }
 
-            if (dp[n][m] != -1)
-            {
-                return dp[n][m];
-            }
+//             if (dp[n][m] != -1)
+//             {
+//                 return dp[n][m];
+//             }
 
-            int ans = 0;
-            if (x[n - 1] == y[m - 1])
-            {
-                ans = 1 + lcs(x, y, n - 1, m - 1, dp);
-            }
-            else
-            {
-                ans = max(lcs(x, y, n - 1, m, dp), lcs(x, y, n, m - 1, dp));
-            }
+//             int ans = 0;
+//             if (x[n - 1] == y[m - 1])
+//             {
+//                 ans = 1 + lcs(x, y, n - 1, m - 1, dp);
+//             }
+//             else
+//             {
+//                 ans = max(lcs(x, y, n - 1, m, dp), lcs(x, y, n, m - 1, dp));
+//             }
 
-            return dp[n][m] = ans;
-        }
+//             return dp[n][m] = ans;
+//         }
     public:
         int longestCommonSubsequence(string x, string y)
         {
