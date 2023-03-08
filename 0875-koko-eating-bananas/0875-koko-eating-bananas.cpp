@@ -32,15 +32,11 @@ class Solution {
     }
 public:
     int minEatingSpeed(vector<int>& piles, int h) {
-        
-        long long int sum=0;
-        
+
          int mn=INT_MIN;
         
         for(int i=0;i<piles.size();i++)
         {
-            sum+=piles[i];
-            
             mn=max(mn,piles[i]);
         }
         
