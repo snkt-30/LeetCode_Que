@@ -35,16 +35,16 @@ public:
         
         long long int sum=0;
         
-         int mn=INT_MAX;
+         int mn=INT_MIN;
         
         for(int i=0;i<piles.size();i++)
         {
             sum+=piles[i];
             
-            mn=min(mn,piles[i]);
+            mn=max(mn,piles[i]);
         }
         
-        long long int lo=1,hi=sum;
+        long long int lo=1,hi=mn;
         
         long long int ans=INT_MAX;
         
