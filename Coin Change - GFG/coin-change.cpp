@@ -38,9 +38,37 @@ class Solution {
 
         // code here.
         
-        vector<vector<long long int>> dp(N+1,vector<long long int>(sum+1,-1));
+        vector<vector<long long int>> dp(N+1,vector<long long int>(sum+1));
         
-        return helper(coins,N,sum,dp);
+        
+        for(int i=0;i<=sum;i++)
+        {
+            dp[0][i]=0;
+        }
+        
+        for(int i=0;i<=N;i++)
+        {
+            dp[i][0]=1;
+        }
+        
+        for(int i=1;i<=N;i++)
+        {
+            for(int j=0;j<=sum;j++)
+            {
+              long long  int take=0;
+                
+                if(j>=coins[i-1])
+                {
+                    take=dp[i][j-coins[i-1]];
+                }
+                
+              long long  int not_take=dp[i-1][j];
+                
+                dp[i][j]=(take+not_take);
+            }
+        }
+        
+        return dp[N][sum];
     }
 };
 
