@@ -1,12 +1,12 @@
 /**
  *Definition for a binary tree node.
  *struct TreeNode {
- *   int val;
- *   TreeNode * left;
- *   TreeNode * right;
- *   TreeNode() : val(0), left(nullptr), right(nullptr) {}
- *   TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
- *   TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ *int val;
+ *TreeNode * left;
+ *TreeNode * right;
+ *TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
  *};
  */
 class Solution
@@ -18,7 +18,7 @@ class Solution
             return (!node->left and!node->right);
         }
 
-    void dfs(TreeNode *root, vector<int> &ds,string asf)
+    void dfs(TreeNode *root, string asf, int &sum)
     {
         if (!root)
         {
@@ -27,35 +27,32 @@ class Solution
 
         if (isleaf(root))
         {
-            asf=asf+to_string(root->val);
-            
-            int dgt=stoi(asf);
-            
-            ds.push_back(dgt);
-            
+            asf = asf + to_string(root->val);
+
+            int dgt = stoi(asf);
+
+            sum += dgt;
+
             asf.pop_back();
+
             return;
         }
-        
-        
-        asf=asf+to_string(root->val);
-        dfs(root->left, ds,asf);
-        dfs(root->right, ds,asf);
+        asf = asf + to_string(root->val);
+
+        dfs(root->left, asf, sum);
+
+        dfs(root->right, asf, sum);
+
         asf.pop_back();
     }
     public:
-     
-    int sumNumbers(TreeNode *root)
-    {
-        vector<int> ds;
 
-        dfs(root, ds,"");
-        
-        int sum=0;
-        for(int i=0;i<ds.size();i++)
+        int sumNumbers(TreeNode *root)
         {
-            sum+=ds[i];
+            int sum = 0;
+
+            dfs(root, "", sum);
+
+            return sum;
         }
-        return sum;
-    }
 };
