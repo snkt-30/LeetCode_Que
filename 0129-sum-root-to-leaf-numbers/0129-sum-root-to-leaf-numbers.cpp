@@ -18,7 +18,7 @@ class Solution
             return (!node->left and!node->right);
         }
 
-    void dfs(TreeNode *root, vector<int> &ds)
+    void dfs(TreeNode *root, vector<int> &ds,string asf)
     {
         if (!root)
         {
@@ -27,42 +27,35 @@ class Solution
 
         if (isleaf(root))
         {
-            ds.push_back(root->val);
-            res.push_back(ds);
-
-            ds.pop_back();
+            asf=asf+to_string(root->val);
+            
+            int dgt=stoi(asf);
+            
+            ds.push_back(dgt);
+            
+            asf.pop_back();
             return;
         }
-
-        ds.push_back(root->val);
-        dfs(root->left, ds);
-        dfs(root->right, ds);
-        ds.pop_back();
+        
+        
+        asf=asf+to_string(root->val);
+        dfs(root->left, ds,asf);
+        dfs(root->right, ds,asf);
+        asf.pop_back();
     }
     public:
-        vector<vector < int>> res;
+     
     int sumNumbers(TreeNode *root)
     {
         vector<int> ds;
 
-        dfs(root, ds);
-
-        int sum = 0;
-        for (auto &x: res)
+        dfs(root, ds,"");
+        
+        int sum=0;
+        for(int i=0;i<ds.size();i++)
         {
-            int n = x.size();
-            int dgt = 0;
-
-            for (int i = 0; i < n; i++)
-            {
-                dgt = dgt *10 + x[i];
-            }
-
-            cout << dgt << endl;
-
-            sum += dgt;
+            sum+=ds[i];
         }
-
         return sum;
     }
 };
