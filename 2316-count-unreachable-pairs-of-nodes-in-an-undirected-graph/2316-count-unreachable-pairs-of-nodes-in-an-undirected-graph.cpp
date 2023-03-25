@@ -56,61 +56,63 @@ class Solution
             }
         }
         
-         for(auto x:e)
-        {
-            int u=x[0];
-            int v=x[1];
-            
-            int a=ds.find_par(u);
-            int b=ds.find_par(v);
-            
-            if(a!=b)
-            {
-                ds.Union_by_size(a,b);
-            }
-        }
-        
         map<int,int>mp;
         
         for(int i=0;i<n;i++)
         {
-            mp[ds.parent[i]]++;
+            mp[ds.find_par(i)]++;
         }
         
-        if(mp.size()==1)
-            return 0;
+        long long rem_node=n;
+        long long int ans=0;
         
-        vector<int> s;
         
         for(auto x:mp)
         {
-            s.push_back(x.second);
-        }
-        
-        // sort(s.begin().s.end());
-        
-        for(int i=0;i<n;i++)
-        {
-            cout<<ds.parent[i]<<" "<<i<<endl;
-        }
-        vector<int>pr(s.size());
-        
-        pr[s.size()-1]=s[s.size()-1];
-        
-        for(int i=s.size()-2;i>=0;i--)
-        {
-            pr[i]=pr[i+1]+s[i];
-        }
-        
-        long long int ans=0;
-        
-        for(int i=0;i<s.size()-1;i++)
-        {
-            long long temp=s[i]*1LL*pr[i+1];
+            long long int cmp=x.second;
             
-            ans+=temp;
+            ans+=cmp*(rem_node-cmp);
+            rem_node-=cmp;
         }
         
-        return ans; 
+        
+        return ans;
+        
+        
+//         if(mp.size()==1)
+//             return 0;
+        
+//         vector<int> s;
+        
+//         for(auto x:mp)
+//         {
+//             s.push_back(x.second);
+//         }
+        
+//         // sort(s.begin().s.end());
+        
+//         for(int i=0;i<n;i++)
+//         {
+//             cout<<ds.parent[i]<<" "<<i<<endl;
+//         }
+//         vector<int>pr(s.size());
+        
+//         pr[s.size()-1]=s[s.size()-1];
+        
+//         for(int i=s.size()-2;i>=0;i--)
+//         {
+//             pr[i]=pr[i+1]+s[i];
+//         }
+        
+//         long long int ans=0;
+        
+//         for(int i=0;i<s.size()-1;i++)
+//         {
+//             long long temp=s[i]*1LL*pr[i+1];
+            
+//             ans+=temp;
+//         }
+        
+//         return ans; 
     }
 };
