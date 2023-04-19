@@ -47,7 +47,7 @@ public:
             int side=x.second.first;
             int len=x.second.second;
             
-            cout<<side<<" "<<len<<endl;
+            // cout<<side<<" "<<len<<endl;
             
             if(node->left)
             {
