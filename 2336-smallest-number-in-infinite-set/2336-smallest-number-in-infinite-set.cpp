@@ -1,12 +1,11 @@
+
 class SmallestInfiniteSet {
 public:
-    unordered_map<int,bool> mp;
+   vector<int>mp;
     SmallestInfiniteSet() {
         
-        for(int i=1;i<=1000;i++)
-        {
-            mp[i]=true;
-        }
+       mp.resize(1001,1);
+        
     }
     
     int popSmallest() {
@@ -15,10 +14,10 @@ public:
         
         for(int i=1;i<=1000;i++)
         {
-            if(mp[i]==true)
+            if(mp[i]==1)
             {
                 ans=i;
-                mp[i]=false;
+                mp[i]=0;
                 break;
             }
         }
@@ -27,7 +26,7 @@ public:
     
     void addBack(int num) {
         
-        mp[num]=true;
+        mp[num]=1;
     }
 };
 
