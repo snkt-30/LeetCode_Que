@@ -1,4 +1,11 @@
 class Solution {
+    private:
+    
+    bool check(char s)
+    {
+        
+        return (s=='a' or s=='e' or s=='i' or s=='o' or s=='u');
+    }
 public:
     int maxVowels(string s, int k) {
         
@@ -9,19 +16,19 @@ public:
         
         int n=s.length();
         
-        unordered_map<char,bool> mp;
+//         unordered_map<char,bool> mp;
         
-        mp['a']=true;
-        mp['e']=true;
-        mp['i']=true;
-        mp['o']=true;
-        mp['u']=true;
+//         mp['a']=true;
+//         mp['e']=true;
+//         mp['i']=true;
+//         mp['o']=true;
+//         mp['u']=true;
         
         int v=0;
         
         while(r<n)
         {
-            if(mp[s[r]]==true)
+            if(check(s[r]))
             {
                v++;
             }
@@ -29,7 +36,7 @@ public:
             if(r-l+1==k)
             {
                 mx_vowel=max(mx_vowel,v);
-                if(mp[s[l]]==true)
+                if(check(s[l]))
                 {
                     v--;
                 }
