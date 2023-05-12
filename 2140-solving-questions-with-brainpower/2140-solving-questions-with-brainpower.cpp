@@ -30,9 +30,25 @@ public:
     long long mostPoints(vector<vector<int>>& a) {
         
         int n=a.size();
-        vector<long long > dp(n,-1);
+        vector<long long > dp(n);
+        
+        dp[n-1]=a[n-1][0];
         
         
-        return helper(0,a,dp,n);
+        for (int i = n - 2; i >= 0; --i) {
+            dp[i] = a[i][0];
+            int skip = a[i][1];
+            if (i + skip + 1 < n) {
+                dp[i] += dp[i + skip + 1];
+            }
+            
+            // dp[i] = max(solve it, skip it)
+            dp[i] = max(dp[i], dp[i + 1]);
+        }
+        
+        return dp[0];
+        
+        
+        // return helper(0,a,dp,n);
     }
 };
