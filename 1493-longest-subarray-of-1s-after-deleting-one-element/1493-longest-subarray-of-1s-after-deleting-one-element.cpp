@@ -28,19 +28,13 @@ public:
             
             if(cnt==2)
             {
-                if(a[l]==0)
+                while(cnt>1 and l<=r and l<n)
                 {
+                    if(a[l]==0)
+                        cnt--;
                     l++;
                 }
-                else
-                {
-                  while(a[l]!=0 and l<n and l<=r)
-                  {
-                      l++;
-                  }
-                    l++;
-                }
-                cnt--;
+                // l++;
             }
             
             // cout<<r<<" "<<l<<endl;
