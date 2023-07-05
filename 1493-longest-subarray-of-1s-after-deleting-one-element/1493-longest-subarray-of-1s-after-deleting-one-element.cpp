@@ -43,16 +43,16 @@ public:
             r++;
         }
         
-        if(z_cnt==n)
-        {
-            return 0;
-        }
+//         if(z_cnt==n)
+//         {
+//             return 0;
+//         }
         
-        if(o_cnt==1)
-            return 1;
+//         if(o_cnt==1)
+//             return 1;
         
-        if(o_cnt==n)
-            return n-1;
+//         if(o_cnt==n)
+//             return n-1;
         
         return ans;;
     }
