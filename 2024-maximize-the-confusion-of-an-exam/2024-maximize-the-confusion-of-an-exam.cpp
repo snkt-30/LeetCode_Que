@@ -14,7 +14,7 @@ public:
         
         int r=0,l=0;
         
-        int t_cnt=0,f_cnt=0,mn=INT_MAX;
+        int t_cnt=0,f_cnt=0,mn=n;
         
         int ans=0;
         while(r<n)
