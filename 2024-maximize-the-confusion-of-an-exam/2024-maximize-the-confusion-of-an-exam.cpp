@@ -29,9 +29,7 @@ public:
             }
             
             mn=min(t_cnt,f_cnt);
-            
-            if(mn>k)
-            {
+ 
                 while(mn>k and l<n and l<=r)
                 {
                     if(s[l]=='T')
@@ -46,7 +44,6 @@ public:
                     mn=min(t_cnt,f_cnt);
                     l++;
                 }
-            }
             ans=max(ans,r-l+1);
             r++;
         }
