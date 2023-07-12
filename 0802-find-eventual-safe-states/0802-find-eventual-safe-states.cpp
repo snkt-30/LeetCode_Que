@@ -1,61 +1,59 @@
-class Solution
-{
-
-    bool dfs(vector<vector < int>> &graph, vector< int > &vis, vector< int > &vis_path, vector< int > &check, int node)
+class Solution {
+    
+    set<int> result;
+    bool dfs(int node,vector<int>&path_visited,vector<int>&visited,vector<vector<int>>& graph)
     {
-        vis[node] = 1;
-        vis_path[node] = 1;
-
-        for (auto child: graph[node])
+        path_visited[node]=1;
+        visited[node]=1;
+        
+        for(auto adj_node:graph[node])
         {
-            if (!vis[child])
+            if(!visited[adj_node])
             {
-                if (dfs(graph, vis, vis_path, check, child) == true)
+                if(dfs(adj_node,path_visited,visited,graph)==false)
                 {
-                    check[node] = 0;
-                    return true;
+                    return false;
                 }
             }
             else
             {
-                if (vis_path[child])
+                if(path_visited[adj_node]==true)
                 {
-                    check[node] = 0;
-                    return true;
+                    return false;
                 }
             }
         }
-
-        check[node] = 1;
-        vis_path[node] = 0;
-        return false;
+        path_visited[node]=false;
+        result.insert(node);
+        
+        return true;
     }
-    public:
-        vector<int> eventualSafeNodes(vector<vector < int>> &graph)
+public:
+    vector<int> eventualSafeNodes(vector<vector<int>>& graph) {
+        
+        
+        int n=graph.size();
+        
+        vector<int>path_visited(n,0);
+        
+        vector<int> visited(n,0);
+        
+        vector<int> res;
+        
+        for(int i=0;i<n;i++)
         {
-
-            int n = graph.size();
-
-            vector<int> vis(n, 0);
-            vector<int> vis_path(n, 0);
-            vector<int> check(n, 0);
-
-            vector<int> safe_node;
-
-            for (int i = 0; i < n; i++)
+            if(!visited[i])
             {
-                if (!vis[i])
-                {
-                    dfs(graph, vis, vis_path, check, i);
-                }
+                dfs(i,path_visited,visited,graph);
             }
-
-            for (int i = 0; i < n; i++)
-            {
-                if (check[i] == 1)
-                    safe_node.push_back(i);
-            }
-
-            return safe_node;
         }
+        
+      for(auto x:result)
+      {
+          res.push_back(x);
+      }
+        
+        return res;
+       
+    }
 };
