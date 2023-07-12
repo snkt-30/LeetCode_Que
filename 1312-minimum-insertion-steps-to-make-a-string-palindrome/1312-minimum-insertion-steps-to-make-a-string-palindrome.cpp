@@ -21,7 +21,7 @@ public:
         
         reverse(t.begin(),t.end());
         
-        vector<vector<int>> dp(n+1,vector<int>(n+1,0));
+        int dp[501][501];
         
         for(int i=0;i<=n;i++)
         {
