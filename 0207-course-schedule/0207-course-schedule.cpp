@@ -20,7 +20,7 @@ public:
         
         queue<int>bfs;
         
-        vector<int> courses_can_take;
+        // vector<int> courses_can_take;
         
         for(int i=0;i<nc;i++)
         {
@@ -28,14 +28,19 @@ public:
             {
                 bfs.push(i);
             }
+            
         }
+        
+        int cnt=0;
         
         while(!bfs.empty())
         {
             int node=bfs.front();
             bfs.pop();
             
-            courses_can_take.push_back(node);
+            cnt++;
+            
+            // courses_can_take.push_back(node);
             
             for(auto x:adj[node])
             {
@@ -47,12 +52,7 @@ public:
                 }
             }
         }
-        
-        if(courses_can_take.size()!=nc)
-        {
-            return false;
-        }
-        
-        return true;
+       
+        return (cnt==nc);
     }
 };
