@@ -2,7 +2,7 @@ class Solution {
 public:
     int longestSubsequence(vector<int>& a, int d) {
         
-        map<int,int>mp;  // element  and its index
+        unordered_map<int,int>mp;  // element  and its index
         
         
         int n=a.size();
@@ -10,7 +10,6 @@ public:
         vector<int>dp(n+1,0);
         
         int mx=INT_MIN;
-        
         
         for(int i=0;i<n;i++)
         {
