@@ -1,4 +1,5 @@
 class Solution {
+
 public:
     int longestSubsequence(vector<int>& a, int d) {
         
@@ -7,9 +8,9 @@ public:
         
         int n=a.size();
         
-        vector<int>dp(n+1,0);
+        int dp[100001];
         
-        int mx=INT_MIN;
+        int mx=-1;
         
         for(int i=0;i<n;i++)
         {
