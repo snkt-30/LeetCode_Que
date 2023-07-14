@@ -5,7 +5,6 @@ public:
         
         unordered_map<int,int>mp;  // element  and its index
         
-        
         int n=a.size();
         
         int dp[100001];
