@@ -8,23 +8,20 @@ public:
         
         priority_queue<double> pq;
         
-        
-        
         for(auto x:nums)
         {
             pq.push(x);
             sum+=x;
         }
-        
         double half=sum/2.0;
-        
-        double reduced=0.0;
+        // double reduced=0.0;
         
         int oper=0;
         
         
         cout<<sum<<" "<<half<<endl;
-        while(!pq.empty() and half>reduced)
+        
+        while(!pq.empty() and half>0)
         {
             
             double val=pq.top();
@@ -32,10 +29,10 @@ public:
             
             double h=val/2.0;
             
-            reduced+=h;
+            half-=h;
             pq.push(h);
             oper++;
-            cout<<reduced<<endl;
+            // cout<<reduced<<endl;
         }
         
         return oper;
