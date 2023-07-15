@@ -4,7 +4,7 @@ public:
         
         
         
-        double sum=0.0;
+        long long sum=0.0;
         
         priority_queue<double> pq;
         
@@ -19,7 +19,7 @@ public:
         int oper=0;
         
         
-        cout<<sum<<" "<<half<<endl;
+        // cout<<sum<<" "<<half<<endl;
         
         while(half>0)
         {
@@ -28,7 +28,6 @@ public:
             pq.pop();
             
             double h=val/2.0;
-            
             half-=h;
             pq.push(h);
             oper++;
