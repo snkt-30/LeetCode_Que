@@ -8,7 +8,7 @@ public:
         
         priority_queue<double> pq;
         
-        for(auto &x:nums)
+        for(auto x:nums)
         {
             pq.push(x);
             sum+=x;
