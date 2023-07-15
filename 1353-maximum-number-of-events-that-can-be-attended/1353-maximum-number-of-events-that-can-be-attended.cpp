@@ -24,15 +24,11 @@ public:
         
         sort(events.begin(),events.end(),cmp);
         
-        int n=events.size();
-        
-        int l_day=events[n-1][1];
-        
         set<int>day;
         
         int cnt=0;
         
-        for(int i=1;i<=l_day;i++)
+        for(int i=1;i<=100010;i++)
         {
             day.insert(i);
         }
