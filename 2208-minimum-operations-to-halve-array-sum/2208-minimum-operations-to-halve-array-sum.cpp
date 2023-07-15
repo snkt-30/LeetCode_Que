@@ -21,7 +21,7 @@ public:
         
         cout<<sum<<" "<<half<<endl;
         
-        while(!pq.empty() and half>0)
+        while(half>0)
         {
             
             double val=pq.top();
