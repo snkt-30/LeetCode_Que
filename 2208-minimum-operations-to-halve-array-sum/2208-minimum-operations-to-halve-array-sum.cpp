@@ -8,13 +8,12 @@ public:
         
         priority_queue<double> pq;
         
-        for(auto x:nums)
+        for(auto &x:nums)
         {
             pq.push(x);
             sum+=x;
         }
         double half=sum/2.0;
-        // double reduced=0.0;
         
         int oper=0;
         
