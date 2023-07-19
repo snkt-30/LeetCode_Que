@@ -31,9 +31,9 @@ public:
         
         for(int i=1;i<n;i++)
         {
-            int ls=se;
+           
             
-            if(in[i][0]>=ls)
+            if(in[i][0]>=se)
             {
                f=in[i][0];
                se=in[i][1];
@@ -42,11 +42,9 @@ public:
             {
                 cnt++;
                 continue;
-            }
-                
+            }     
         }
         
         return cnt;
-        
     }
 };
