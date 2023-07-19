@@ -20,23 +20,23 @@ class Solution {
 public:
     int eraseOverlapIntervals(vector<vector<int>>& in) {
         
-        
         int n=in.size();
         
         sort(in.begin(),in.end(),cmp);
         
-        
-        vector<int> temp=in[0];
+          int f=in[0][0];
+          int se=in[0][1];
         
         int cnt=0;
         
         for(int i=1;i<n;i++)
         {
-            int ls=temp[1];
+            int ls=se;
             
             if(in[i][0]>=ls)
             {
-                temp=in[i];
+               f=in[i][0];
+               se=in[i][1];
             }
             else
             {
