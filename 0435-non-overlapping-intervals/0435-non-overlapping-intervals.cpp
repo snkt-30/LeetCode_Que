@@ -30,9 +30,7 @@ public:
         int cnt=0;
         
         for(int i=1;i<n;i++)
-        {
-           
-            
+        { 
             if(in[i][0]>=se)
             {
                f=in[i][0];
@@ -41,7 +39,7 @@ public:
             else
             {
                 cnt++;
-                continue;
+                // continue;
             }     
         }
         
