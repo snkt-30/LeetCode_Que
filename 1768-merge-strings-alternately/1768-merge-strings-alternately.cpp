@@ -5,46 +5,32 @@ public:
         int n=a.length();
         int m=b.length();
         
-        if(n==0)
-            return b;
         
-        if(m==0)
-            return a;
+        int f=0,s=0;
         
-      int ind_a=0,ind_b=0;
+        string res="";
         
-        string ans="";
-        
-        bool flag=true;
-        
-        while(ind_a<n and ind_b<m)
+        while(f<n and s<m)
         {
-            if(flag)
-            {
-                ans+=a[ind_a];
-                flag=false;
-                ind_a++;
-            }
-            else
-            {
-                ans+=b[ind_b];
-                ind_b++;
-                flag=true;
-            }
+            res.push_back(a[f]);
+            res.push_back(b[s]);
+            
+            f++;
+            s++;
         }
         
-        while(ind_a<n)
+        while(f<n)
         {
-            ans+=a[ind_a];
-            ind_a++;
+          res.push_back(a[f]);
+            f++;
         }
         
-        while(ind_b<m)
+        while(s<m)
         {
-            ans+=b[ind_b];
-            ind_b++;
+            res.push_back(b[s]);
+            s++;
         }
         
-        return ans;
+        return res;
     }
 };
