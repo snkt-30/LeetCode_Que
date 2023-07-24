@@ -21,7 +21,7 @@ public:
             x=x*x;
             (n>>=1);
         }
-        if(isNeg)
+        if(p<0)
         {
             ans=double(1.0)/double(ans);
         }
