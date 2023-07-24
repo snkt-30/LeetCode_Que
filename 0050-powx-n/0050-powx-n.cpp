@@ -1,23 +1,27 @@
 class Solution {
 public:
-    double myPow(double x, int n) {
+    double myPow(double x, int p) {
         double ans=1.0;
-        long long nn=n;
-        if(nn<0)
+        
+        bool isNeg=false;
+        
+        long long n=p;
+        if(n<0)
         {
-         nn=-1*nn;
+            n=n*(-1);
+            isNeg=true;
         }
         
-        while(nn)
+        while(n)
         {
-            if(nn&1)
+            if(n&1)
             {
                 ans=ans*x;
             }
             x=x*x;
-            (nn>>=1);
+            (n>>=1);
         }
-        if(n<0)
+        if(isNeg)
         {
             ans=double(1.0)/double(ans);
         }
