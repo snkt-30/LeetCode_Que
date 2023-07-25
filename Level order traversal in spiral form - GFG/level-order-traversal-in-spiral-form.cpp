@@ -131,15 +131,18 @@ vector<int> findSpiral(Node *root)
 {
     //Your code here
     
-    if(root==nullptr)
-      return {};
-    vector<int>ans;
+    if(!root)
+    {
+        return {};
+    }
     
-    queue<Node* >bfs;
+    vector<int>res;
+    
+    queue<Node*> bfs;
     
     bfs.push(root);
-    bool flag=true;
     
+    bool side=true;
     
     while(!bfs.empty())
     {
@@ -149,27 +152,28 @@ vector<int> findSpiral(Node *root)
         {
             Node* node=bfs.front();
             bfs.pop();
-           temp.push_back(node->data);
-           
-           if(node->left)
-             bfs.push(node->left);
-             
-           if(node->right)
+            temp.push_back(node->data);
+            
+            if(node->left)
+              bfs.push(node->left);
+              
+             if(node->right)
               bfs.push(node->right);
         }
         
-        for(int i=0;i<n;i++)
+        if(side)
         {
-            if(!flag)
-            {
-                ans.push_back(temp[i]);
-            }
-            else
-            {
-                ans.push_back(temp[n-i-1]);
-            }
+            reverse(temp.begin(),temp.end());
         }
-        flag=!flag;
+        
+        side=!side;
+        
+        for(auto x:temp)
+        {
+            res.push_back(x);
+        }
     }
-    return ans;
+    
+    return res;
+    
 }
