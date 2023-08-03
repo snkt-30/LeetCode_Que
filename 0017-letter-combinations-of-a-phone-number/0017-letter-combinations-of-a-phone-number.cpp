@@ -1,30 +1,28 @@
 class Solution {
      map<int,string>mp;
+    
      vector<string>ans;
     
-    void gen_combo(int ind,string ds,vector<string>&st)
+    void gen_combo(int ind,string ds,string d)
     {
-        if(ds.length()==st.size())
+        if(ds.length()==d.length())
         {
             ans.push_back(ds);
             return;
         }
         
-        string s=st[ind];
+        string s=mp[d[ind]-'0'];
         
         for(int i=0;i<s.length();i++)
         {
             ds.push_back(s[i]);
-            gen_combo(ind+1,ds,st);
+            gen_combo(ind+1,ds,d);
             ds.pop_back();
         }
     }
     
-    
 public:
     vector<string> letterCombinations(string digits) {
-        
-        map<int,string>mp;
         
         if(digits.length()==0)
         {
@@ -40,14 +38,14 @@ public:
         mp[8]="tuv";
         mp[9]="wxyz";
         
-        vector<string> st;
+//         vector<string> st;
         
-        for(auto x:digits)
-        {
-            st.push_back(mp[x-'0']);
-        }
+//         for(auto x:digits)
+//         {
+//             st.push_back(mp[x-'0']);
+//         }
         
-        gen_combo(0,"",st);
+        gen_combo(0,"",digits);
         
         return ans;
         
