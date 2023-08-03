@@ -1,5 +1,5 @@
 class Solution {
-     map<int,string>mp;
+     unordered_map<int,string>mp;
     
      vector<string>ans;
     
