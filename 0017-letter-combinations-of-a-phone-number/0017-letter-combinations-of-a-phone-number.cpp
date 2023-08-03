@@ -4,7 +4,7 @@ class Solution {
     
     void gen_combo(int ind,string ds,string d)
     {
-        if(ds.length()==d.length())
+        if(ind>=d.length())
         {
             ans.push_back(ds);
             return;
