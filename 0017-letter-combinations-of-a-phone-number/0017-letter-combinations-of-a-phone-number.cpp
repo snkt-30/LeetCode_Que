@@ -1,6 +1,5 @@
 class Solution {
-     unordered_map<int,string>mp;
-    
+    vector<string> mp = {"","","abc","def","ghi","jkl","mno","pqrs","tuv","wxyz"};
      vector<string>ans;
     
     void gen_combo(int ind,string ds,string d)
@@ -29,14 +28,14 @@ public:
             return {};
         }
         
-        mp[2]="abc";
-        mp[3]="def";
-        mp[4]="ghi";
-        mp[5]="jkl";
-        mp[6]="mno";
-        mp[7]="pqrs";
-        mp[8]="tuv";
-        mp[9]="wxyz";
+//         mp[2]="abc";
+//         mp[3]="def";
+//         mp[4]="ghi";
+//         mp[5]="jkl";
+//         mp[6]="mno";
+//         mp[7]="pqrs";
+//         mp[8]="tuv";
+//         mp[9]="wxyz";
         
 //         vector<string> st;
         
