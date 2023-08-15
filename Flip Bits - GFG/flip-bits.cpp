@@ -10,25 +10,58 @@ class Solution{
     int maxOnes(int a[], int n)
     {
         // Your code goes here
-         int cnt=0;
-        for(int i=0;i<n;i++){
-            if(a[i]==1){
+        
+        int cnt=0;
+         int l=-1,r=-1;
+        
+        
+        for(int i=0;i<n;i++)
+        {
+            if(a[i]==0 and l==-1 and r==-1)
+            {
+                l=i,r=i;
+            }
+            
+            if(a[i]==1)
+            {
                 cnt++;
-                a[i]=-1;
-            }else{
-                a[i]=1;
             }
         }
-        int mx=0;
-        int sum=0;
-        for(int i=0;i<n;i++){
-            sum+=a[i];
-            if(sum<0){
-                sum=0;
-            }
-            mx=max(mx,sum);
+        
+        if(r==-1)
+        {
+            r=n;
         }
-        return cnt+mx;
+        int cn=0;
+        int mx=INT_MIN;
+        while(r<n)
+        {
+            if(a[r]==0)
+            {
+                cn++;
+            }
+            else
+            {
+                cn--;
+            }
+            
+            
+           if(cn<0)
+           {
+               while(cn<0 and l<=r)
+               {
+                   if(a[l]==1)
+                   cn++;
+                   l++;
+               }
+           }
+           
+           mx=max(mx,cn);
+           r++;
+        }
+        
+        mx=max(mx,cn);
+        return (cnt+mx);
     }
 };
 
