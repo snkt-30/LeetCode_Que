@@ -12,9 +12,10 @@ class Solution
         {
 
             queue<pair<int, pair<int, int>>> bfs;
-
             int n = mat.size();
             int m = mat[0].size();
+            
+            vector<vector<int>>res(n,vector<int>(m,0));
 
             int dx[4] = { -1,
                 1,
@@ -51,9 +52,9 @@ class Solution
                     int nrow = row + dx[del];
                     int ncol = col + dy[del];
 
-                    if (isValid(nrow, ncol, n, m) and!vis[nrow][ncol] and mat[nrow][ncol] != 0)
+                    if (isValid(nrow, ncol, n, m) and !vis[nrow][ncol] and mat[nrow][ncol] != 0)
                     {
-                        mat[nrow][ncol] = dist + 1;
+                        res[nrow][ncol] = dist + 1;
                         vis[nrow][ncol] = 1;
 
                         bfs.push(make_pair(dist + 1, make_pair(nrow, ncol)));
@@ -61,6 +62,6 @@ class Solution
                 }
             }
             
-            return mat;
+            return res;
         }
 };
