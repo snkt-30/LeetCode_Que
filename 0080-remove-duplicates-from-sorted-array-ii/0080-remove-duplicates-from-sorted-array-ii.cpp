@@ -1,41 +1,61 @@
 class Solution {
 public:
-    int removeDuplicates(vector<int>& nums) {
+    int removeDuplicates(vector<int>& a) {
         
         
-        map<int,int>f;
+        int l=0,r=0;
         
-        for(auto x:nums)
+        int n=a.size();
+        
+        while(r<n)
         {
-            f[x]++;
+            if(a[l]==a[r])
+            {
+               if(r-l+1>2)
+               {
+                   a[r]=INT_MIN;
+               }
+            }
+            else
+            {
+                l=r;
+            }
+            r++;
         }
         
-        int ind=0;
+        l=0,r=0;
         
-        int ans=0;
-        
-        for(auto x:f)
+        for(int i=0;i<n;i++)
         {
-            if(x.second==0)
-            {
-                continue;
-            }
-            
-            if(x.second==1)
-            {
-                nums[ind]=x.first;
-                ind++;
-                ans+=1;
-            }
-            else if(x.second>1)
-            {
-                nums[ind]=x.first;
-                ind++;
-                nums[ind]=x.first;
-                ind++; 
-                ans+=2;
-            }
+            cout<<a[i]<<" ";
         }
-        return ans;
+        
+        cout<<" next ";
+        
+        while(r<n)
+        {
+            if(a[l]==INT_MIN)
+            {
+                if(a[r]!=INT_MIN)
+                {
+                    swap(a[l],a[r]);
+                    l++;
+                }
+            }
+            else
+            {
+                l++;
+            }
+            r++;
+        }
+             for(int i=0;i<n;i++)
+        {
+            cout<<a[i]<<" ";
+        }
+        
+        cout<<endl;
+        
+        return (l);
+        
     }
 };
