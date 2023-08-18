@@ -2,7 +2,7 @@ class Solution {
 public:
     int maximalNetworkRank(int n, vector<vector<int>>& roads) {
         
-        vector<int> ind(n+1,0);
+        unordered_map<int,int> ind;
         
         vector<vector<int>> mat(n+1,vector<int>(n+1,0));
         
