@@ -8,7 +8,7 @@ public:
         {
            --columnNumber;
             
-            res.push_back((char)(columnNumber%26+'A' ));
+            res+=((char)(columnNumber%26+'A' ));
             
             columnNumber/=26;
         }
