@@ -10,20 +10,20 @@
  */
 class Solution {
 public:
-    ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
+    ListNode* addTwoNumbers(ListNode* a, ListNode* b) {
         
         
-        if(!l1)
-            return l2;
+        if(!a)
+            return b;
         
-        if(!l2)
-            return l1;
+        if(!b)
+            return a;
         
         ListNode* temp=new ListNode(-1);
         
         ListNode* res=temp;
         
-        ListNode* a=l1,*b=l2;
+        // ListNode* a=l1,*b=l2;
         
         int carry=0;
         
