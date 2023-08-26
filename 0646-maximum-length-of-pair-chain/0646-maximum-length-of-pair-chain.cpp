@@ -36,6 +36,21 @@ public:
             return(a[1]<b[1]);
         });
         
+        vector<int>last=pairs[0];
+        
+        int cnt=1;
+        
+        for(auto x:pairs)
+        {
+            if(x[0]>last[1])
+            {
+                last=x;
+                cnt++;
+            }
+        }
+        
+        return cnt;
+        
         int dp[1001][1001];
         
         memset(dp,-1,sizeof(dp));
