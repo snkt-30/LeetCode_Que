@@ -36,15 +36,15 @@ public:
             return(a[1]<b[1]);
         });
         
-        vector<int>last=pairs[0];
+       int last=pairs[0][1];
         
         int cnt=1;
         
         for(auto x:pairs)
         {
-            if(x[0]>last[1])
+            if(x[0]>last)
             {
-                last=x;
+                last=x[1];
                 cnt++;
             }
         }
