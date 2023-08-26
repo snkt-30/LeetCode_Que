@@ -10,23 +10,24 @@
  */
 class Solution {
 public:
-    ListNode* addTwoNumbers(ListNode* a, ListNode* b) {
+    ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
         
         
-        if(!a)
-            return b;
+        if(!l1)
+            return l2;
         
-        if(!b)
-            return a;
+        if(!l2)
+            return l1;
         
         ListNode* temp=new ListNode(-1);
         
         ListNode* res=temp;
         
-        // ListNode* a=l1,*b=l2;
+        ListNode* a=l1,*b=l2;
         
         int carry=0;
         
+        //while both are not null
         while(a and b)
         {
             int val1=a->val;
@@ -41,6 +42,7 @@ public:
             b=b->next;
         }
         
+        // when b get null
         while(a)
         {
              int val1=a->val;
@@ -53,6 +55,7 @@ public:
             a=a->next;
         }
         
+        // when a get null
         while(b)
         {
             int val2=b->val;
@@ -65,6 +68,7 @@ public:
             b=b->next;
         }
         
+        //at the end very cary remain 
         if(carry)
         {
             temp->next=new ListNode(carry);
