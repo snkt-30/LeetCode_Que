@@ -12,82 +12,64 @@ class Solution {
 public:
     ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
         
-        ListNode* ans=new ListNode(0);
-        ListNode* res=ans;
         
-        if(!l2)
-            return l1;
         if(!l1)
             return l2;
         
-        ListNode* t1=l1,*t2=l2;
+        if(!l2)
+            return l1;
+        
+        ListNode* temp=new ListNode(-1);
+        
+        ListNode* res=temp;
+        
+        ListNode* a=l1,*b=l2;
         
         int carry=0;
         
-        while(t1 and t2)
+        while(a and b)
         {
-            int a=t1->val;
-            int b=t2->val;
-            int sum=a+b;
+            int val1=a->val;
+            int val2=b->val;
             
-            if(carry==1){
-                sum+=1;
-                --carry;
-            }
+            int dig=(val1+val2+carry)%10;
+            carry=(val1+val2+carry)/10;   
             
-            int rem=sum%10;
-            carry=sum/10;
-            
-            ListNode* node=new ListNode(rem);
-            ans->next=node;
-            ans=ans->next;
-            
-            t1=t1->next;
-            t2=t2->next;
+            temp->next=new ListNode(dig);
+            temp=temp->next;
+            a=a->next;
+            b=b->next;
         }
         
-        while(t1)
+        while(a)
         {
-            int a=t1->val;
-            if(carry==1)
-            {
-                a+=1;
-                carry--;
-            }
-            int rem=a%10;
-            carry=a/10;
-            ListNode* node=new ListNode(rem);
-            ans->next=node;
-            ans=ans->next;
-            t1=t1->next;
+             int val1=a->val;
+            
+            int dig=(val1+carry)%10;
+            carry=(val1+carry)/10;
+            
+            temp->next=new ListNode(dig);
+            temp=temp->next;
+            a=a->next;
         }
         
-           while(t2)
+        while(b)
         {
-            int a=t2->val;
-            if(carry==1)
-            {
-                a+=1;
-                carry--;
-            }
-            int rem=a%10;
-            carry=a/10;
-            ListNode* node=new ListNode(rem);
-            ans->next=node;
-            ans=ans->next;
-            t2=t2->next;
+            int val2=b->val;
+            
+            int dig=(val2+carry)%10;
+            carry=(val2+carry)/10;
+            
+            temp->next=new ListNode(dig);
+            temp=temp->next;
+            b=b->next;
         }
         
-        if(carry==1)
+        if(carry)
         {
-            ListNode* node=new ListNode(1);
-            carry--;
-            ans->next=node;
-            ans=ans->next;
+            temp->next=new ListNode(carry);
         }
         
         return res->next;
-        
-        
     }
 };
