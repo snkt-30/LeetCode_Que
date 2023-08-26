@@ -27,7 +27,7 @@ class Solution {
 public:
     int findLongestChain(vector<vector<int>>& pairs) {
            
-        sort(pairs.begin(),pairs.end(),[](vector<int>&a,vector<int>&b){
+        sort(pairs.begin(),pairs.end(),[&](vector<int>&a,vector<int>&b){
             
             if(a[1]==b[1])
             {
