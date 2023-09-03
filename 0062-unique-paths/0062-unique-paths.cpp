@@ -26,7 +26,25 @@ public:
         
         int dp[101][101];
         
-        memset(dp,-1,sizeof(dp));
+        memset(dp,0,sizeof(dp));
+        
+        for(int i=0;i<m;i++)
+        {
+            for(int j=0;j<n;j++)
+            {
+                if(i==0 or j==0)
+                {
+                    dp[i][j]=1;
+                }
+                else
+                {
+                    dp[i][j]=dp[i-1][j]+dp[i][j-1];
+                }
+                
+            }
+    }
+        
+        return dp[m-1][n-1];
         
         return ans(m-1,n-1,dp);
     }
