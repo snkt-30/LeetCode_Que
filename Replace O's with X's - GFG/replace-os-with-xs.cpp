@@ -8,63 +8,90 @@ using namespace std;
 // User function Template for C++
 
 class Solution{
-    private:
-    int delrow[4]={-1,0,1,0};
-    int delcol[4]={0,1,0,-1};
     
-    void dfs(int row,int col, vector<vector<char>>&mat, vector<vector<int>>&vis)
+    bool isValid(int row,int col, int n,int m)
     {
-        int n=mat.size();
-        int m=mat[0].size();
-        
-        vis[row][col]=1;
-        
-        for(int i=0;i<4;i++)
-        {
-            int nrow=row+delrow[i];
-            int ncol=col+delcol[i];
-            
-            if(nrow>=0 and nrow<n and ncol>=0 and ncol<m and mat[nrow][ncol]=='O' and vis[nrow][ncol]==0)
-            {
-                dfs(nrow,ncol,mat,vis);
-            }
-        }
+        return (row>=0 and col>=0 and row<n and col<m);
     }
 public:
-    vector<vector<char>> fill(int n, int m, vector<vector<char>>&mat)
+    vector<vector<char>> fill(int n, int m, vector<vector<char>> mat)
     {
         // code here
-        vector<vector<int>>vis(n,vector<int>(m,0));
+        
+        vector<vector<int>> vis(n,vector<int>(m,0));
+        
+        queue<pair<int,int>> bfs;
+        
+        for(int i=0;i<n;i++)
+        {
+            if(mat[i][0]=='O')
+            {
+                bfs.push({i,0});
+            }
+            
+            if(mat[i][m-1]=='O')
+            {
+                bfs.push({i,m-1});
+            }
+        }
         
         for(int i=0;i<m;i++)
         {
-            if(!vis[0][i] and mat[0][i]=='O')
-              dfs(0,i,mat,vis);
-              
-            if(!vis[n-1][i] and mat[n-1][i]=='O')
-               dfs(n-1,i,mat,vis);
+            if(mat[0][i]=='O')
+            {
+                bfs.push({0,i});
+            }
+            
+            if(mat[n-1][i]=='O')
+            {
+                bfs.push({n-1,i});
+            }
         }
         
-         for(int i=0;i<n;i++)
+        int dx[4]={-1,1,0,0};
+        int dy[4]={0,0,-1,1};
+        
+        while(!bfs.empty())
         {
-            if(mat[i][0]=='O' and !vis[i][0])
-              dfs(i,0,mat,vis);
-              
-            if(mat[i][m-1]=='O' and !vis[i][m-1])
-               dfs(i,m-1,mat,vis);
+            auto x=bfs.front();
+            bfs.pop();
+            
+            int row=x.first;
+            int col=x.second;
+            
+            vis[row][col]=1;
+            
+            for(int i=0;i<4;i++)
+            {
+                int nrow=row+dx[i];
+                int ncol=col+dy[i];
+                
+                if(isValid(nrow,ncol,n,m) and !vis[nrow][ncol] and mat[nrow][ncol]=='O')
+                {
+                    bfs.push({nrow,ncol});
+                }
+            }
         }
         
+        vector<vector<char>> ans(n,vector<char>(m));
         for(int i=0;i<n;i++)
         {
             for(int j=0;j<m;j++)
             {
-                if(mat[i][j]=='O' and !vis[i][j])
+                if(vis[i][j]==0)
                 {
-                    mat[i][j]='X';
+                    ans[i][j]='X';
+                }
+                else
+                {
+                    ans[i][j]='O';
                 }
             }
         }
-        return mat;
+        
+        return ans;
+        
+        
     }
 };
 
