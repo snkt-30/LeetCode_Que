@@ -3,15 +3,15 @@ class Solution {
 public:
     
       vector<int>parent;
-    vector<int>sz;
+    // vector<int>sz;
     Solution()
     {
         parent.resize(1001);
-        sz.resize(1001);
+        // sz.resize(1001);
         for(int i=0;i<=1000;i++)
         {
             parent[i]=i;
-            sz[i]=1;
+            // sz[i]=1;
         }
     }
     
@@ -33,12 +33,12 @@ public:
         
         if(a_par!=b_par)
         {
-            if(sz[a_par]<sz[b_par])
-            {
-                swap(a_par,b_par);
-            }
+            // if(sz[a_par]<sz[b_par])
+            // {
+            //     swap(a_par,b_par);
+            // }
             
-            sz[a_par]+=sz[b_par];
+            // sz[a_par]+=sz[b_par];
             parent[b_par]=a_par;
         }
     }
