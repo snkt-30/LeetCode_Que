@@ -7,7 +7,7 @@ public:
         
         // int ans=0;
         
-       vector<pair<int,int>> pq;
+      priority_queue<pair<int,int>,vector<pair<int,int>>, greater<pair<int,int>>> pq;
         
         for(int i=0;i<n;i++)
         {
@@ -18,24 +18,15 @@ public:
                     cnt++;
             }
             
-            pq.push_back(make_pair(cnt,i));
-        }
-        
-        sort(pq.begin(),pq.end());
-        
-        k=n-k;
-        while(k--)
-        {
-            pq.pop_back();
+            pq.push(make_pair(cnt,i));
         }
         
         vector<int>ans;
-        
-        for(auto x:pq)
-        {
-            ans.push_back(x.second);
-        }
-        
+      while(k--)
+      {
+          ans.push_back(pq.top().second);
+          pq.pop();
+      }
         return ans;
     }
 };
