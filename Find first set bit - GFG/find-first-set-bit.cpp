@@ -17,20 +17,22 @@ class Solution
     {
         // Your code here
         
-        if(n==0)
-        return 0;
-        int cnt=1;
+        unsigned int ans=0;
+        
+       unsigned int ind=1;
         
         while(n)
         {
-            if(1&n)
+            if(n&1)
             {
-                return cnt;
+               ans=ind;
+               break;
             }
-            cnt++;
             n>>=1;
+            ind++;
         }
-        return cnt;
+        
+        return ans;
     }
 };
 
