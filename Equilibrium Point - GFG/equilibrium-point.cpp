@@ -12,20 +12,26 @@ class Solution{
     int equilibriumPoint(long long a[], int n) {
     
         // Your code here
+        long long int sum=0;
+        long long int curr=0;
         
-        if(n==1)
-          return 1;
- 
+        int ans=-1;
         
-        for(int i=1;i<n;i++)
+        for(int i=0;i<n;i++)
         {
-            a[i]+=a[i-1];
+            sum+=a[i];
         }
         
-        for(int i=1;i<n;i++)
+        for(int i=0;i<n;i++)
         {
-            if(a[i-1]==a[n-1]-a[i])
-               return i+1;
+            // cout<<curr<<endl;
+            if(curr==(sum-(curr+a[i])))
+            {
+                return (i+1);
+            }
+            curr=curr+a[i];
+            
+            // cout<<curr<<endl;
         }
         
         return -1;
