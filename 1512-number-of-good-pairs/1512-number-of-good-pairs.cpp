@@ -3,16 +3,16 @@ public:
     int numIdenticalPairs(vector<int>& nums) {
         
         
-        vector<int>pos(101,0);
+//         vector<int>pos(101,0);
         
-        pos[1]=0;
-        int inc=1;
+//         pos[1]=0;
+//         int inc=1;
         
-        for(int i=2;i<=100;i++)
-        {
-            pos[i]=pos[i-1]+inc;
-            inc++;
-        }
+//         for(int i=2;i<=100;i++)
+//         {
+//             pos[i]=pos[i-1]+inc;
+//             inc++;
+//         }
         
         map<int,int>mp;
         
@@ -25,11 +25,9 @@ public:
         
         for(auto x:mp)
         {
-            if(x.second>=2)
-            {
-                cout<<x.first<<" "<<x.second<<" "<<pos[x.second]<<endl;
-               ans+=pos[x.second]; 
-            }
+            int n=x.second;
+            
+            ans+=(n*(n-1))/2;
         }
         
         return ans;
