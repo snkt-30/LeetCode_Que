@@ -1,46 +1,31 @@
 class Solution {
 public:
     int countCharacters(vector<string>& words, string chars) {
-        
-        unordered_map<char,int> mp;
-        
-        
-        for(char & ch:chars)
-        {
-            mp[ch]++;
+        vector<int> counts(26, 0);
+        for (char c : chars) {
+            counts[c - 'a']++;
         }
         
-        int ans=0;
-        
-        for(auto x:words)
-        {
-            map<char,int> freq;
-            
-            for(auto ch:x)
-            {
-                freq[ch]++;
+        int ans = 0;
+        for (string word : words) {
+            vector<int> wordCount(26, 0);
+            for (char c : word) {
+                wordCount[c - 'a']++;
             }
-            bool check=true;
             
-            for(auto ele:freq)
-            {
-                char c=ele.first;
-                int cnt=ele.second;
-                
-                if(mp[c]<cnt)
-                {
-                    check=false;
+            bool good = true;
+            for (int i = 0; i < 26; i++) {
+                if (counts[i] < wordCount[i]) {
+                    good = false;
                     break;
                 }
             }
             
-            if(check)
-            {
-                ans+=x.length();
+            if (good) {
+                ans += word.size();
             }
         }
         
         return ans;
-        
     }
 };
