@@ -2,34 +2,47 @@ class Solution {
 public:
     bool validPath(int n, vector<vector<int>>& edges, int source, int destination) {
         
+        vector<int> adj[n+1];
         
-        queue<int>q;
-        q.push(source);
-        
-        vector<int> adj[n];
-        
-        for(int i=0;i<edges.size();i++)
+        if(n==1)
         {
-            int u=edges[i][0];
-            int v=edges[i][1];
-            
-            adj[u].push_back(v);
-            adj[v].push_back(u);
+            return true;
         }
-        vector<int>vis(n);
         
-        vis[source]=1;
-        while(!q.empty())
+        
+        for(auto x:edges)
         {
-           int node=q.front();
-            q.pop();
-            vis[node]=1;
+            int u = x[0];
+            int v= x[1];
             
-            if(node==destination)return true;
-            for(auto x:adj[node])
+            adj[v].push_back(u);
+            adj[u].push_back(v);
+        }
+        
+        queue<int> bfs;
+        
+        vector<int> vis(n+1,0);
+        
+        bfs.push(source);
+        
+        while(bfs.size())
+        {
+            int src = bfs.front();
+            bfs.pop();
+            
+            vis[src]=true;
+            
+            for (auto ele : adj[src])
             {
-                if(!vis[x])
-                    q.push(x);
+                 if(ele == destination)
+                    {
+                        return true;
+                    } 
+                if(!vis[ele])
+                {
+                    
+                    bfs.push(ele);
+                }
             }
         }
         return false;
