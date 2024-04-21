@@ -31,13 +31,13 @@ public:
             bfs.pop();
             
             vis[src]=true;
+            if(src == destination)
+                {
+                        return true;
+                } 
             
             for (auto ele : adj[src])
             {
-                 if(ele == destination)
-                    {
-                        return true;
-                    } 
                 if(!vis[ele])
                 {
                     
