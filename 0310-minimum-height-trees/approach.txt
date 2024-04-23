@@ -1,0 +1,7 @@
+In this problem we have asked to find the nodes which form a tree with minium height. we can choose any node from a given tree and from that node we have to find the height of the tree and find the minimum height trees.  
+ 
+ So my approach was that first we cannot select the outer nodes becuase if we are going to select the outer node the surely the height of tree will be maxium so outer nodes is no chance.  Now if not outer nodes then which nodes are suitable. Then think if we just remove the outer layer one by one ( nodes )  then we will remain with the nodes at the core like bascially the nodes after that the tree will be empty and that will be our ans and it also make sense because see we keep cutting the outer nodes of tree till we dont get the nodes at the core .  Now why this solution will woork becuase we know at point if we choose the outer node or node close to outer then it surely result in heighted tree for sure. so we just cutting the outer part till we dont get the core nodes . and for last round or second last round we will remain with odd or even number of nodes in straight line if number of nodes is even in number then the ans would be two nodes else one node.
+
+
+       (1)--(2)--(3)--(4)--(5)--(6)   // ans would be {3,4}
+       (1)--(2)--(3)--(4)--(5)   // here ans would be {3}
