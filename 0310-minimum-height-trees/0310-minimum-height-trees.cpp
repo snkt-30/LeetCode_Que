@@ -1,53 +1,66 @@
-#define pb emplace_back
 class Solution {
 public:
-    vector<int> findMinHeightTrees(int n, vector<vector<int>>& e) {
+    vector<int> findMinHeightTrees(int n, vector<vector<int>>& edges) {
         
-        vector<int>ind(n);
-        vector<int>adj[n];
+        // return{4,5};
         
         if(n==1)
+        {
             return {0};
+        }
         
-        for(auto x:e)
+       vector<int> adj[n+1],indegree(n+1,0);
+        
+    
+        for(auto x:edges)
         {
-            int u=x[0];
-            int v=x[1];
+            int u= x[0];
+            int v= x[1];
             
-            adj[u].pb(v);
-            adj[v].pb(u);
-            ind[v]++;
-            ind[u]++;
+            indegree[u]++;
+            indegree[v]++;
+            adj[u].push_back(v);
+            adj[v].push_back(u);
         }
         
-        vector<int>ans;
-        queue<int>bfs;
+        queue<int> bfs;
         
-        for(int i=0;i<n;i++)
-        {
-            if(ind[i]==1)
-                bfs.push(i);
-        }
+       for(int i=0;i<n;i++)
+       {
+           if(indegree[i]==1)
+           {
+               bfs.push(i);
+           }
+       }
+        vector<int> min_Height_Trees;
         
+        cout<<bfs.size()<<endl;
         while(!bfs.empty())
         {
-            int sz=bfs.size();
-            ans.clear();
+            int outer_edges = bfs.size();
             
-            for(int i=0;i<sz;i++)
+            min_Height_Trees.resize(0);
+            
+            for(int i=0;i<outer_edges;i++)
             {
-                int node=bfs.front();
+                int node = bfs.front();
                 bfs.pop();
-                ans.push_back(node);
+                min_Height_Trees.push_back(node);
                 
                 for(auto x:adj[node])
                 {
-                    ind[x]--;
-                    if(ind[x]==1)
+                    --indegree[x];
+                    if(indegree[x]==1)
+                    {
                         bfs.push(x);
+                    }
                 }
+                            
             }
         }
-        return ans;
+        
+        return min_Height_Trees;
+        
+        
     }
 };
