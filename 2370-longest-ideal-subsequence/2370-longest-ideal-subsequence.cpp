@@ -1,41 +1,49 @@
 class Solution {
 public:
     int longestIdealString(string s, int k) {
-        int N = size(s);
-        vector<vector<int>> dp(N, vector<int>(26, -1));
-
-        // Find the maximum dp[N-1][c] and return the result
-        int res = 0;
-        for (int c = 0; c < 26; c++) {
-            res = max(res, dfs(N - 1, c, dp, s, k));
-        }
-        return res;
-    }
-
-    int dfs(int i, int c, vector<vector<int>>& dp, string& s, int k) {
-        // Memoized value
-        if (dp[i][c] != -1) {
-            return dp[i][c];
-        }
-
-        // State is not visited yet
-        dp[i][c] = 0;
-        bool match = c == (s[i] - 'a');
-        if (match) {
-            dp[i][c] = 1;
-        }
-
-        // Non base case handling
-        if (i > 0) {
-            dp[i][c] = dfs(i - 1, c, dp, s, k);
-            if (match) {
-                for (int p = 0; p < 26; p++) {
-                    if (abs(c - p) <= k) {
-                        dp[i][c] = max(dp[i][c], dfs(i - 1, p, dp, s, k) + 1);
-                    }
-                }
+        
+        vector<int> values(26,0);
+        
+        int n= s.length()-1;
+        
+        // cout<<s[n]-'a'<<endl;
+        
+        values[s[n]-'a']=1;
+        
+        // int ans=0;
+        
+        for(int i=s.length()-2;i>=0;i--)
+        {
+            int val = s[i]-'a';
+            
+            int mx=0;
+            
+            for(int rng = max(val - k,0);rng<=min(val+k,25);rng++)
+            {
+                mx = max(mx,values[rng]);
+                // cout<<values[rng]<<mx<<" ";
             }
+            
+            // cout<<endl;
+            
+            // cout<<mx<<" "<<ans<<endl;
+            
+            // ans=max(ans,mx+1);
+            values[val]=max(values[val],mx+1);
+            // cout<<values[val]<<" "<<val<<" "<<ans<<endl;
         }
-        return dp[i][c];
+        
+        int ans=0;
+        
+        for(int i=0;i<26;i++)
+        {
+            ans=max(ans,values[i]);
+        }
+        
+        
+        
+        return ans;
+        
+    
     }
 };
