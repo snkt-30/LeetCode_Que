@@ -1,0 +1,9 @@
+ The approach was simple but tricky to implement. We only have to find the minium path from row 0 to row n-1 but the only condition was that if we choose a element form row i and col j 
+ then when we choose next element from row i+1 then we cant choose mat[i+1][j]  we have to skip that column from where we choose the previous element. 
+
+ for this i have to maintain one loop inside the helper function which is traversing the whole current row and for each element if we have to consider it this loop check two condition 
+ one condition was ( row==0)  this condition i put becuase i was not able to send col == -1 from main function that why this condition and second condition was he current element we are choosing are not from the same column as previous element. and thats all then we find the just call for every element and find the minium for a current row and store it in dp and the rest of the life is easy. 
+
+ we return to main function and find the minium and from first row of dp as we have store all the ans there.  and return the ans;
+
+ that was the whole approach.
