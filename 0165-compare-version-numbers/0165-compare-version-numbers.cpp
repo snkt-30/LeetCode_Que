@@ -5,12 +5,12 @@ public:
         int n= a.length();
         int m = b.length();
         
-        int i=0,j=0;
+        int i=0,j=0,v1=0,v2=0;
         
         while(i<n and j<m)
         {
-            int v1 =0,v2=0;
             
+            v1=0,v2=0;
             while(i<n and a[i]!='.')
             {
                 v1 = v1*10 + (a[i]-'0');
@@ -41,7 +41,7 @@ public:
         
         while(i<n)
         {
-            int v1 =0;
+             v1 =0;
             
             while(i<n and a[i]!='.')
             {
@@ -61,7 +61,7 @@ public:
         
         while(j<m)
         {
-            int v1 =0;
+             v1 =0;
             
             while(j<m and b[j]!='.')
             {
