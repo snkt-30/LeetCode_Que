@@ -30,7 +30,7 @@ public:
                 minRescueBoats++;
             }
             
-            cout<<minRescueBoats<<" "<<i<<" "<<j<<endl;
+            // cout<<minRescueBoats<<" "<<i<<" "<<j<<endl;
         }
         
         return minRescueBoats;
