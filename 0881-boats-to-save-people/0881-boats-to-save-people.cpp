@@ -1,51 +1,45 @@
-class Solution
-{
-    public:
-        int numRescueBoats(vector<int> &p, int lm)
+class Solution {
+public:
+    int numRescueBoats(vector<int>& people, int limit) {
+        
+        sort(people.begin(),people.end());
+        
+        int n= people.size();
+        
+        int i=0,j=n-1;
+        
+        int minRescueBoats=0;
+        
+        while(i<=j)
         {
-
+            int lValue= people[i];
+            int rValue = people[j];
             
-            sort(p.begin(), p.end());
-            
-            int n=p.size();
-            
-         int l=0,r=n-1;
-            
-            
-        int boat=0;
-            
-            while(l<=r)
+            if(i==j)
             {
-                boat++;
-                
-                if(p[l]+p[r]<=lm)
-                    l++;
-                r--;
+                minRescueBoats++;
+                break;
             }
-            return boat;
             
+            if(rValue == limit){
+                minRescueBoats++;
+                j--;
+            }
+            else if((lValue + rValue) > limit)
+            {
+                j--;
+                minRescueBoats++;
+            }
+            else {
+                i++,j--;
+                minRescueBoats++;
+            }
             
-           	//         int boat_req=1;
-
-           	//         int cnt=1;
-
-           	//         int wt_rem=l-p[0];
-
-           	//         for(int i=1;i < n;i++)
-           	//         {
-           	//             if(wt_rem>=p[i] and cnt < 2)
-           	//             {
-           	//                 cnt++;
-           	//                 wt_rem=wt_rem-p[i];
-           	//             }
-           	//             else
-           	//             {
-           	//                 cnt=1;
-           	//                 wt_rem=l-p[i];
-           	//                 boat_req++;
-           	//             }
-           	//         }
-
-           	//         return boat_req;
+            cout<<minRescueBoats<<" "<<i<<" "<<j<<endl;
         }
+        
+        return minRescueBoats;
+        
+        
+    }
 };
