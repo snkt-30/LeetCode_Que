@@ -21,14 +21,9 @@ public:
                 break;
             }
             
-            if(rValue == limit){
+            if(rValue == limit or (lValue + rValue) > limit){
                 minRescueBoats++;
                 j--;
-            }
-            else if((lValue + rValue) > limit)
-            {
-                j--;
-                minRescueBoats++;
             }
             else {
                 i++,j--;
